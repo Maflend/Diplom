@@ -16,11 +16,10 @@ namespace Diplom.Persistence.EntityTypeConfigurations
             builder.HasKey(e => e.Id);
             builder.HasIndex(e => e.Id).IsUnique();
             builder.Property(e => e.Quantity).IsRequired();
-            builder.Property(e => e.ProductId).IsRequired();
-            builder.Property(e => e.OrderId).IsRequired();
 
-            builder.HasOne(e => e.Product).WithMany(p=>p.Sales).HasForeignKey(e=>e.ProductId);
-            builder.HasOne(e => e.Order).WithMany(o => o.Sales).HasForeignKey(e=>e.OrderId);
+
+            builder.HasOne(e => e.Product).WithMany(p=>p.Sales);
+            builder.HasOne(e => e.Order).WithMany(o => o.Sales);
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using Diplom.Application.Models.Requests;
 using Diplom.Application.Models.Responses;
+using Diplom.Persistence;
 
 namespace Diplom.Server.Controllers
 {
@@ -38,6 +39,7 @@ namespace Diplom.Server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<Response<string>>> Login(LoginRequest request)
         {
+        
             try
             {
                 var serviceResponse =  await _authService.Login(request);

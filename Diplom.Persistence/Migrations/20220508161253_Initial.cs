@@ -65,8 +65,7 @@ namespace Diplom.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -105,21 +104,6 @@ namespace Diplom.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { new Guid("18e1a8d3-b15b-4941-9290-0608b5e9ea3c"), "Наушники" });
-
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { new Guid("c054e951-ce67-43c6-819e-99d517f208bd"), "Телефоны" });
-
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { new Guid("de393f68-4d29-49d1-b31e-8f23e6275d16"), "Телевизоры" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_Id",
                 table: "Categories",
@@ -130,6 +114,12 @@ namespace Diplom.Persistence.Migrations
                 name: "IX_Categories_Name",
                 table: "Categories",
                 column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_Id",
+                table: "Orders",
+                column: "Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -145,6 +135,12 @@ namespace Diplom.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Products_Id",
                 table: "Products",
+                column: "Id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_Id",
+                table: "Sales",
                 column: "Id",
                 unique: true);
 

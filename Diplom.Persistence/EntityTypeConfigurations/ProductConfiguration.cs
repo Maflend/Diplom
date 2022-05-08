@@ -18,16 +18,8 @@ namespace Diplom.Persistence.EntityTypeConfigurations
             builder.Property(u => u.Name).IsRequired();
             builder.Property(u => u.Price).IsRequired();
             builder.Property(u => u.PurchasePrice).IsRequired();
-            builder.Property(u => u.CategoryId).IsRequired();
             
-
-
-            builder.HasOne(p => p.Category).WithMany(c => c.Products).HasForeignKey(p => p.CategoryId);
-
-
-
-
-          
+            builder.HasOne(p => p.Category).WithMany(c => c.Products).IsRequired();
         }
     }
 }

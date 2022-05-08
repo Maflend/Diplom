@@ -49,7 +49,7 @@ namespace Diplom.Application.Services
         }
         public async Task<List<ProductResponse>> GetListByCategoryId(Guid id)
         {
-            var products = await _db.Products.Where(p=>p.CategoryId == id).ToListAsync();
+            var products = await _db.Products.Where(p=>p.Category.Id == id).ToListAsync();
             if (products == null)
                 return new List<ProductResponse>();
 

@@ -1,5 +1,6 @@
 ﻿using Diplom.Application.Interfaces;
 using Diplom.Domain.Interfaces;
+using Diplom.Persistence;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +16,8 @@ namespace Diplom.Server.Controllers
         {
             _productService = productService;
         }
-        //[HttpGet]
-        //public async Task<ProductResponse>
-      
+
+        
+
     }
 }

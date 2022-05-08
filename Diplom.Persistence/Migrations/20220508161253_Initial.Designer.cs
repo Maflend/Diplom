@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diplom.Persistence.Migrations
 {
     [DbContext(typeof(DiplomContext))]
-    [Migration("20220508152128_Initial")]
+    [Migration("20220508161253_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,23 +43,6 @@ namespace Diplom.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("c054e951-ce67-43c6-819e-99d517f208bd"),
-                            Name = "Телефоны"
-                        },
-                        new
-                        {
-                            Id = new Guid("de393f68-4d29-49d1-b31e-8f23e6275d16"),
-                            Name = "Телевизоры"
-                        },
-                        new
-                        {
-                            Id = new Guid("18e1a8d3-b15b-4941-9290-0608b5e9ea3c"),
-                            Name = "Наушники"
-                        });
                 });
 
             modelBuilder.Entity("Diplom.Domain.Entities.Order", b =>
@@ -71,13 +54,13 @@ namespace Diplom.Persistence.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("SaleId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -133,6 +116,9 @@ namespace Diplom.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("OrderId");
 

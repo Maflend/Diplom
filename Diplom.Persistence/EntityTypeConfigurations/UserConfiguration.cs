@@ -21,7 +21,7 @@ namespace Diplom.Persistence.EntityTypeConfigurations
             builder.Property(e => e.PasswordHash).IsRequired();
             builder.Property(e => e.PasswordSalt).IsRequired();
 
-            builder.HasMany(e => e.Orders).WithOne(o => o.User).HasForeignKey(e=>e.UserId);
+            builder.HasMany(e => e.Orders).WithOne(o => o.User);
         }
     }
 }

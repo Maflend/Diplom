@@ -1,18 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Diplom.Application.Interfaces;
 using Diplom.Domain.Entities;
-using Diplom.Application.Interfaces;
 using Diplom.Persistence.EntityTypeConfigurations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Diplom.Persistence.Contexts
 {
-    public class DiplomContext :  DbContext, IDiplomContext
+    public class DiplomContext : DbContext, IDiplomContext
     {
-        public DiplomContext(DbContextOptions<DiplomContext> options) : base(options)  { }
+        public DiplomContext()
+        {
+
+        }
+        public DiplomContext(DbContextOptions options) : base(options) 
+        {
+
+        }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Sale> Sales { get; set; }
@@ -24,9 +26,14 @@ namespace Diplom.Persistence.Contexts
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.Entity<Category>().HasData(InitialData.Categories);
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new SaleConfiguration());
+
+           
+            //modelBuilder.Entity<Category>().HasData(InitialData.Categories);
+            //modelBuilder.Entity<Product>().HasData(InitialData.Products);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {}
+        { }
     }
 }
