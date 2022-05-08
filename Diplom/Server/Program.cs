@@ -1,8 +1,9 @@
 using Diplom.Application;
+using Diplom.Mapping;
 using Diplom.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.ResponseCompression;
-
-
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
-
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

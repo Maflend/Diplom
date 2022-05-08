@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using Diplom.Application.Interfaces;
-using Diplom.Application.Models.Responses;
+using Diplom.API.Dto.Responses;
+using Diplom.Application.Abstracts.IServices;
 using Diplom.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diplom.Application.Services
 {
@@ -19,10 +14,10 @@ namespace Diplom.Application.Services
         {
             _db = db;
         }
-        public async Task<ProductResponse> GetById(Guid id)
+        public async Task<ProductResponseDto> GetById(Guid id)
         {
-            var product = await _db.Products.Include(p=>p.Category).FirstOrDefaultAsync(p => p.Id == id);
-            ProductResponse response = new()
+            var product = await _db.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            ProductResponseDto response = new()
             {
                 Name = product?.Name,
                 CategoryName = product?.Category.Name,
@@ -33,31 +28,31 @@ namespace Diplom.Application.Services
 
         }
 
-        public async Task<List<ProductResponse>> GetList()
+        public async Task<List<ProductResponseDto>> GetList()
         {
-            var products = await _db.Products.Include(p=>p.Category).ToListAsync();
+            var products = await _db.Products.Include(p => p.Category).ToListAsync();
             if (products == null)
-                return new List<ProductResponse>();
+                return new List<ProductResponseDto>();
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductResponse>().ForMember("CategoryName", opt=>opt.MapFrom(p=>p.Category.Name)));
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductResponseDto>().ForMember("CategoryName", opt => opt.MapFrom(p => p.Category.Name)));
             // Настройка AutoMapper
             var mapper = new Mapper(config);
             // сопоставление
-            var response = mapper.Map<List<ProductResponse>>(products);
+            var response = mapper.Map<List<ProductResponseDto>>(products);
 
             return response;
         }
-        public async Task<List<ProductResponse>> GetListByCategoryId(Guid id)
+        public async Task<List<ProductResponseDto>> GetListByCategoryId(Guid id)
         {
-            var products = await _db.Products.Where(p=>p.Category.Id == id).ToListAsync();
+            var products = await _db.Products.Where(p => p.Category.Id == id).ToListAsync();
             if (products == null)
-                return new List<ProductResponse>();
+                return new List<ProductResponseDto>();
 
-            var response = products.Select(p => new ProductResponse() { Name = p.Name, CategoryName = p.Category.Name, Description = p.Description, Price = p.Price }).ToList();
+            var response = products.Select(p => new ProductResponseDto() { Name = p.Name, CategoryName = p.Category.Name, Description = p.Description, Price = p.Price }).ToList();
 
             return response;
         }
 
-        
+
     }
 }

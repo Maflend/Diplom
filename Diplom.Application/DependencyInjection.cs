@@ -1,7 +1,5 @@
-﻿
-using Diplom.Application.Interfaces;
-using Diplom.Application.Services;
-using Diplom.Domain.Interfaces;
+﻿using Diplom.Application.Services;
+using Diplom.Application.Abstracts.IServices;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +13,7 @@ namespace Diplom.Application
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
         }

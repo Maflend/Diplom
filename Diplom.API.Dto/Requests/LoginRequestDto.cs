@@ -1,9 +1,8 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Diplom.Application.Models.Requests
+namespace Diplom.API.Dto.Requests
 {
-    public class LoginRequest
+    public class LoginRequestDto
     {
         [Required]
         public string UserName { get; set; }

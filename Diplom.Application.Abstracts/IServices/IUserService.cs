@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Diplom.Application.Interfaces
+namespace Diplom.Application.Abstracts.IServices
 {
     public interface IUserService
     {

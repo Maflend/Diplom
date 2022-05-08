@@ -7,22 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <Folder Include="Mediator\Authentication\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Diplom.API.Dto\Diplom.API.Dto.csproj" />
-    <ProjectReference Include="..\Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj" />
     <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="MediatorHandlers\Authentication\Queries\" />
   </ItemGroup>
 
 </Project>

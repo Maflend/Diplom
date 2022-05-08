@@ -1,7 +1,4 @@
-﻿using Diplom.Application.Interfaces;
-using Diplom.Domain.Interfaces;
-using Diplom.Persistence;
-using Microsoft.AspNetCore.Http;
+﻿using Diplom.Application.Abstracts.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diplom.Server.Controllers
@@ -17,7 +14,7 @@ namespace Diplom.Server.Controllers
             _productService = productService;
         }
 
-        
+
 
     }
 }

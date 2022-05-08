@@ -1,35 +1,28 @@
-﻿using Diplom.Application.Interfaces;
+﻿using Diplom.Application.Abstracts.IServices;
+using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
 using Diplom.Domain.Entities;
-using Diplom.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Diplom.Application.Models;
-using Diplom.Application.Models.Requests;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 
 namespace Diplom.Application.Services
 {
-    public class AuthService : IAuthService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly IDiplomContext _db;
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
 
-        public AuthService(IDiplomContext db, IUserService userService, IConfiguration configuration)
+        public AuthenticationService(IDiplomContext db, IUserService userService, IConfiguration configuration)
         {
             _db = db;
             _userService = userService;
             _configuration = configuration;
         }
-        public async Task<string> Login(LoginRequest request)
+        public async Task<string> LoginAsync(LoginCommand request)
         {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
 
@@ -47,7 +40,7 @@ namespace Diplom.Application.Services
             return token;
         }
 
-        public async Task<User> Register(RegisterRequest request)
+        public async Task RegisterAsync(RegisterCommand request)
         {
             if (!_db.Users.Any(u => u.UserName == request.UserName))
             {
@@ -60,7 +53,6 @@ namespace Diplom.Application.Services
                 user.PasswordSalt = passwordSalt;
                 _db.Users.Add(user);
                 await _db.SaveChangesAsync(new CancellationToken());
-                return user;
             }
             else
             {

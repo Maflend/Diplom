@@ -1,7 +1,7 @@
 ﻿using Diplom.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Diplom.Application.Interfaces
+namespace Diplom.Application.Abstracts.IServices
 {
     public interface IDiplomContext
     {

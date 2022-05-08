@@ -1,16 +1,11 @@
-﻿using Diplom.Application.Models.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Diplom.API.Dto.Requests;
 
 namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 {
     public interface IAuthenticationManager
     {
-        Task<bool> Login(LoginRequest request);
-        Task<bool> Register(RegisterRequest request);
+        Task<bool> Login(LoginRequestDto request);
+        Task<bool> Register(RegisterRequestDto request);
         Task Logout();
         string ErrorMessage { get; set; }
     }

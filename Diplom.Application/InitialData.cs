@@ -1,4 +1,4 @@
-﻿using Diplom.Application.Interfaces;
+﻿using Diplom.Application.Abstracts.IServices;
 using Diplom.Domain.Entities;
 
 namespace Diplom.Application

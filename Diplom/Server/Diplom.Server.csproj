@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -16,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Diplom.Application\Diplom.Application.csproj" />
+    <ProjectReference Include="..\..\Diplom.Mapping\Diplom.Mapping.csproj" />
     <ProjectReference Include="..\..\Diplom.Persistence\Diplom.Persistence.csproj" />
     <ProjectReference Include="..\Client\Diplom.Client.csproj" />
   </ItemGroup>

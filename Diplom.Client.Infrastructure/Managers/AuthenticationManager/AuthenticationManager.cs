@@ -1,14 +1,9 @@
 ﻿using Blazored.LocalStorage;
-using Diplom.Application.Models;
-using Diplom.Application.Models.Requests;
-using Diplom.Application.Models.Responses;
+using Diplom.API.Dto;
+using Diplom.API.Dto.Requests;
+using Diplom.API.Dto.Responses;
 using Microsoft.AspNetCore.Components.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 {
@@ -25,7 +20,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
             _localStorage = localStorage;
             _authenticationStateProvider = authenticationStateProvider;
         }
-        public async Task<bool> Login(LoginRequest request)
+        public async Task<bool> Login(LoginRequestDto request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Login, request);
             var desegializingResponse = await response.Content.ReadFromJsonAsync<Response<string>>();
@@ -41,11 +36,11 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
         }
 
-        public async Task<bool> Register(RegisterRequest request)
+        public async Task<bool> Register(RegisterRequestDto request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Register, request);
-            var desegializingResponse = await response.Content.ReadFromJsonAsync<Response<RegisterResponse>>();
-           
+            var desegializingResponse = await response.Content.ReadFromJsonAsync<Response<RegisterResponseDto>>();
+
             if (!desegializingResponse.Success)
             {
                 ErrorMessage = desegializingResponse.Message;

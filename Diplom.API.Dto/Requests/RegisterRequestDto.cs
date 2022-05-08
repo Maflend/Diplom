@@ -1,9 +1,8 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Diplom.Application.Models.Requests
+namespace Diplom.API.Dto.Requests
 {
-    public class RegisterRequest
+    public class RegisterRequestDto
     {
         [Required]
         [MinLength(6)]

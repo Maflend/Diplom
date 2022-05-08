@@ -1,4 +1,4 @@
-﻿namespace Diplom.Application.Models
+﻿namespace Diplom.API.Dto
 {
     public class Response<T>
     {

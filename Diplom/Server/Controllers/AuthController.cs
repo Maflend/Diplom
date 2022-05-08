@@ -1,15 +1,8 @@
-﻿
-using Diplom.Domain.Entities;
-using Diplom.Domain.Interfaces;
-using Diplom.Application.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Diplom.API.Dto.Requests;
+using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using Diplom.Application.Models.Requests;
-using Diplom.Application.Models.Responses;
-using Diplom.Persistence;
 
 namespace Diplom.Server.Controllers
 {
@@ -17,40 +10,39 @@ namespace Diplom.Server.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+
+        public AuthController(IMediator mediator, IMapper mapper)
         {
-            _authService = authService;
+            _mediator = mediator;
+            _mapper = mapper;
         }
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterRequest request)
+        public async Task<ActionResult> Register(RegisterRequestDto request)
         {
-            try
+            RegisterCommand registerCommand = _mapper.Map<RegisterCommand>(request);
+            var response = await _mediator.Send(registerCommand);
+
+            if (!response.Success)
             {
-                var serviceResponse = await _authService.Register(request);
-                var regResponse = new RegisterResponse {UserName = serviceResponse.UserName };
-                return Ok(new Response<RegisterResponse> { Data = regResponse, Success = true });
+                return BadRequest(response.Message);
             }
-            catch (Exception ex)
-            {
-                return BadRequest(new Response<RegisterResponse> { Message = ex.Message, Success = false });
-            }
+
+            return Ok(response.Data);
         }
         [HttpPost("login")]
-        public async Task<ActionResult<Response<string>>> Login(LoginRequest request)
+        public async Task<ActionResult> Login(LoginRequestDto request)
         {
-        
-            try
+            LoginCommand loginCommand = _mapper.Map<LoginCommand>(request);
+            var response = await _mediator.Send(loginCommand);
+
+            if (!response.Success)
             {
-                var serviceResponse =  await _authService.Login(request);
-                return Ok(new Response<string> {Data = serviceResponse, Success = true});
+                return BadRequest(response.Message);
             }
-            catch(Exception ex)
-            {
-                return BadRequest(new Response<string> { Message = ex.Message, Success = false});
-            }
-           
+            return Ok(response.Data);
         }
     }
-   
+
 }

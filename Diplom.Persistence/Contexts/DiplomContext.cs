@@ -1,4 +1,4 @@
-﻿using Diplom.Application.Interfaces;
+﻿using Diplom.Application.Abstracts.IServices;
 using Diplom.Domain.Entities;
 using Diplom.Persistence.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ namespace Diplom.Persistence.Contexts
         {
 
         }
-        public DiplomContext(DbContextOptions options) : base(options) 
+        public DiplomContext(DbContextOptions options) : base(options)
         {
 
         }
@@ -29,7 +29,7 @@ namespace Diplom.Persistence.Contexts
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new SaleConfiguration());
 
-           
+
             //modelBuilder.Entity<Category>().HasData(InitialData.Categories);
             //modelBuilder.Entity<Product>().HasData(InitialData.Products);
         }
