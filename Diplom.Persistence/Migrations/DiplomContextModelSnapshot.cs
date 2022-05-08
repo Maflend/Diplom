@@ -41,6 +41,23 @@ namespace Diplom.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c054e951-ce67-43c6-819e-99d517f208bd"),
+                            Name = "Телефоны"
+                        },
+                        new
+                        {
+                            Id = new Guid("de393f68-4d29-49d1-b31e-8f23e6275d16"),
+                            Name = "Телевизоры"
+                        },
+                        new
+                        {
+                            Id = new Guid("18e1a8d3-b15b-4941-9290-0608b5e9ea3c"),
+                            Name = "Наушники"
+                        });
                 });
 
             modelBuilder.Entity("Diplom.Domain.Entities.Order", b =>
@@ -63,23 +80,6 @@ namespace Diplom.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Diplom.Domain.Entities.Phone.Characteristics.FactoryData", b =>
-                {
-                    b.Property<Guid>("PhoneId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CountryOfOrigin")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("WarrantyMonth")
-                        .HasColumnType("int");
-
-                    b.HasKey("PhoneId");
-
-                    b.ToTable("FactoryData");
                 });
 
             modelBuilder.Entity("Diplom.Domain.Entities.Product", b =>
@@ -172,17 +172,6 @@ namespace Diplom.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Diplom.Domain.Entities.Phone.Phone", b =>
-                {
-                    b.HasBaseType("Diplom.Domain.Entities.Product");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Phones", (string)null);
-                });
-
             modelBuilder.Entity("Diplom.Domain.Entities.Order", b =>
                 {
                     b.HasOne("Diplom.Domain.Entities.User", "User")
@@ -192,17 +181,6 @@ namespace Diplom.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Diplom.Domain.Entities.Phone.Characteristics.FactoryData", b =>
-                {
-                    b.HasOne("Diplom.Domain.Entities.Phone.Phone", "Phone")
-                        .WithOne("FactoryData")
-                        .HasForeignKey("Diplom.Domain.Entities.Phone.Characteristics.FactoryData", "PhoneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Phone");
                 });
 
             modelBuilder.Entity("Diplom.Domain.Entities.Product", b =>
@@ -235,15 +213,6 @@ namespace Diplom.Persistence.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Diplom.Domain.Entities.Phone.Phone", b =>
-                {
-                    b.HasOne("Diplom.Domain.Entities.Product", null)
-                        .WithOne()
-                        .HasForeignKey("Diplom.Domain.Entities.Phone.Phone", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Diplom.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Products");
@@ -262,12 +231,6 @@ namespace Diplom.Persistence.Migrations
             modelBuilder.Entity("Diplom.Domain.Entities.User", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Diplom.Domain.Entities.Phone.Phone", b =>
-                {
-                    b.Navigation("FactoryData")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
