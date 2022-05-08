@@ -22,14 +22,18 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
         }
         public async Task<bool> Login(LoginRequestDto request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Login, request);
-            var desegializingResponse = await response.Content.ReadFromJsonAsync<Response<string>>();
-            if (!desegializingResponse.Success)
-            {
-                ErrorMessage = desegializingResponse.Message;
+            if (request == null)
                 return false;
-            }
-            await _localStorage.SetItemAsync("token", desegializingResponse.Data);
+
+            var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Login, request);
+            var desegializingResponse =  await response.Content.ReadAsStringAsync();
+            //if (!desegializingResponse.Success)
+            //{
+            //    ErrorMessage = desegializingResponse.Message;
+            //    return false;
+            //}
+            //await _localStorage.SetItemAsync("token", desegializingResponse.Data);
+            await _localStorage.SetItemAsync("token", desegializingResponse);
 
             await _authenticationStateProvider.GetAuthenticationStateAsync();
             return true;
@@ -39,13 +43,13 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
         public async Task<bool> Register(RegisterRequestDto request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Register, request);
-            var desegializingResponse = await response.Content.ReadFromJsonAsync<Response<RegisterResponseDto>>();
+            //var desegializingResponse = await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
 
-            if (!desegializingResponse.Success)
-            {
-                ErrorMessage = desegializingResponse.Message;
-                return false;
-            }
+            //if (!desegializingResponse.Success)
+            //{
+            //    ErrorMessage = desegializingResponse.Message;
+            //    return false;
+            //}
             return true;
         }
 

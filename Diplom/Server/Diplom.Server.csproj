@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj" />
     <ProjectReference Include="..\..\Diplom.Application\Diplom.Application.csproj" />
     <ProjectReference Include="..\..\Diplom.Mapping\Diplom.Mapping.csproj" />
     <ProjectReference Include="..\..\Diplom.Persistence\Diplom.Persistence.csproj" />

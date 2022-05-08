@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Diplom.API.Dto.Requests;
+using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace Diplom.Server.Controllers
             _mapper = mapper;
         }
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterRequestDto request)
+        public async Task<ActionResult<RegisterResponseDto>> Register(RegisterRequestDto request)
         {
             RegisterCommand registerCommand = _mapper.Map<RegisterCommand>(request);
             var response = await _mediator.Send(registerCommand);
@@ -32,7 +33,7 @@ namespace Diplom.Server.Controllers
             return Ok(response.Data);
         }
         [HttpPost("login")]
-        public async Task<ActionResult> Login(LoginRequestDto request)
+        public async Task<ActionResult<string>> Login(LoginRequestDto request)
         {
             LoginCommand loginCommand = _mapper.Map<LoginCommand>(request);
             var response = await _mediator.Send(loginCommand);

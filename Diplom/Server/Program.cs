@@ -1,4 +1,5 @@
 using Diplom.Application;
+using Diplom.Application.Abstracts;
 using Diplom.Mapping;
 using Diplom.Persistence;
 using MediatR;
@@ -14,7 +15,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(ApplicationAbstractionAssembly), typeof(ApplicationAssembly));
+//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 var app = builder.Build();
 
