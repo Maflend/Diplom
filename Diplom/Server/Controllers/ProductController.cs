@@ -1,5 +1,4 @@
-﻿using Diplom.Application.Abstracts.IServices;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Diplom.Server.Controllers
 {
@@ -7,14 +6,9 @@ namespace Diplom.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService _productService;
-
-        public ProductController(IProductService productService)
+        public ProductController()
         {
-            _productService = productService;
+
         }
-
-
-
     }
 }

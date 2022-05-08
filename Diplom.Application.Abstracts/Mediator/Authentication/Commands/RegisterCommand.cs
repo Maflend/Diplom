@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Diplom.Application.Abstracts.Mediator.Authentication.Commands
 {
-    public class RegisterCommand : IRequest<Response<RegisterResponseDto>>
+    public class RegisterCommand : IRequest
     {
         public string UserName { get; set; }
         public int Age { get; set; }

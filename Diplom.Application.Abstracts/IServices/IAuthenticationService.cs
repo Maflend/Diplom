@@ -8,8 +8,8 @@ namespace Diplom.Application.Abstracts.IServices
     {
         ClaimsIdentity Claims { get; set; }
         string CreateToken(User user);
-        Task<string> LoginAsync(LoginCommand request);
-        Task RegisterAsync(RegisterCommand request);
+        Task<string> LoginAsync(LoginCommand request, CancellationToken cancellationToken);
+        Task RegisterAsync(RegisterCommand request, CancellationToken cancellationToken);
 
     }
 }

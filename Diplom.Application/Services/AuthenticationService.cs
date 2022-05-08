@@ -1,5 +1,6 @@
 ﻿using Diplom.Application.Abstracts.IServices;
 using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
+using Diplom.Application.Exeptions;
 using Diplom.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,25 +23,25 @@ namespace Diplom.Application.Services
             _userService = userService;
             _configuration = configuration;
         }
-        public async Task<string> LoginAsync(LoginCommand request)
+        public async Task<string> LoginAsync(LoginCommand request, CancellationToken cancellationToken)
         {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
 
             if (user == null)
             {
-                throw new Exception("Пользователь не найден");
+                throw new ServiceException("Пользователь не найден", ServiceExceptionType.NotFound);
             }
 
             if (!_userService.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
             {
-                throw new Exception("Неверный пароль");
+                throw new ServiceException("Неверный пароль", ServiceExceptionType.BadRequest);
             }
 
             string token = CreateToken(user);
             return token;
         }
 
-        public async Task RegisterAsync(RegisterCommand request)
+        public async Task RegisterAsync(RegisterCommand request, CancellationToken cancellationToken)
         {
             if (!_db.Users.Any(u => u.UserName == request.UserName))
             {
@@ -56,7 +57,7 @@ namespace Diplom.Application.Services
             }
             else
             {
-                throw new Exception("Логин занят");
+                throw new ServiceException("Логин занят", ServiceExceptionType.BadRequest);
             }
 
         }

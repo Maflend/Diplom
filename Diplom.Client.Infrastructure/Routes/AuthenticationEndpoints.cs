@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diplom.Client.Infrastructure.Routes
+﻿namespace Diplom.Client.Infrastructure.Routes
 {
     public class AuthenticationEndpoints
     {
-        public static string Register = "api/auth/register";
-        public static string Login = "api/auth/login";
+        public static string Register = "api/authentication/register";
+        public static string Login = "api/authentication/login";
     }
 }

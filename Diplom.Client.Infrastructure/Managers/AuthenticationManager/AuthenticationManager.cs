@@ -1,7 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using Diplom.API.Dto;
 using Diplom.API.Dto.Requests;
-using Diplom.API.Dto.Responses;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 
@@ -22,34 +20,28 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
         }
         public async Task<bool> Login(LoginRequestDto request)
         {
-            if (request == null)
-                return false;
-
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Login, request);
-            var desegializingResponse =  await response.Content.ReadAsStringAsync();
-            //if (!desegializingResponse.Success)
-            //{
-            //    ErrorMessage = desegializingResponse.Message;
-            //    return false;
-            //}
-            //await _localStorage.SetItemAsync("token", desegializingResponse.Data);
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return false;
+            }
+            var desegializingResponse = await response.Content.ReadAsStringAsync();
             await _localStorage.SetItemAsync("token", desegializingResponse);
-
             await _authenticationStateProvider.GetAuthenticationStateAsync();
-            return true;
 
+            return true;
         }
 
         public async Task<bool> Register(RegisterRequestDto request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Register, request);
-            //var desegializingResponse = await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
 
-            //if (!desegializingResponse.Success)
-            //{
-            //    ErrorMessage = desegializingResponse.Message;
-            //    return false;
-            //}
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return false;
+            }
+
             return true;
         }
 
