@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Diplom.Application\Diplom.Application.csproj" />
     <ProjectReference Include="..\..\Diplom.Mapping\Diplom.Mapping.csproj" />
     <ProjectReference Include="..\..\Diplom.Persistence\Diplom.Persistence.csproj" />
+    <ProjectReference Include="..\..\Domain.Infrastructure.Repositories\Domain.Infrastructure.Repositories.csproj" />
     <ProjectReference Include="..\Client\Diplom.Client.csproj" />
   </ItemGroup>
 

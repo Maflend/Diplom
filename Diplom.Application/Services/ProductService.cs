@@ -20,7 +20,7 @@ namespace Diplom.Application.Services
             ProductResponseDto response = new()
             {
                 Name = product?.Name,
-                CategoryName = product?.Category.Name,
+               // CategoryName = product?.Category.Name,
                 Description = product?.Description,
                 Price = product.Price
             };
@@ -48,8 +48,9 @@ namespace Diplom.Application.Services
             if (products == null)
                 return new List<ProductResponseDto>();
 
-            var response = products.Select(p => new ProductResponseDto() { Name = p.Name, CategoryName = p.Category.Name, Description = p.Description, Price = p.Price }).ToList();
-
+         //   var response = products.Select(p => new ProductResponseDto() { Name = p.Name, CategoryName = p.Category.Name, Description = p.Description, Price = p.Price }).ToList();
+            var response = products.Select(p => new ProductResponseDto() { Name = p.Name, Description = p.Description, Price = p.Price }).ToList();
+        
             return response;
         }
 

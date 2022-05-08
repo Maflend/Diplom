@@ -18,11 +18,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Diplom.API.Dto\Diplom.API.Dto.csproj" />
     <ProjectReference Include="..\Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj" />
+    <ProjectReference Include="..\Diplom.Domain.Repositories.Abstracts\Diplom.Domain.Repositories.Abstracts.csproj" />
     <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
+    <ProjectReference Include="..\Diplom.Infrastructure.Specifications\Diplom.Infrastructure.Specifications.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="MediatorHandlers\Authentication\Queries\" />
+    <Folder Include="MediatorHandlers\Product\Commands\" />
   </ItemGroup>
 
 </Project>

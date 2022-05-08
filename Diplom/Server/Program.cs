@@ -3,9 +3,8 @@ using Diplom.Application.Abstracts;
 using Diplom.Mapping;
 using Diplom.Persistence;
 using Diplom.Server;
+using Domain.Infrastructure.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.ResponseCompression;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +15,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.ConfigureRepositories();
+
 builder.Services.AddMediatR(typeof(ApplicationAbstractionAssembly), typeof(ApplicationAssembly));
 builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 var app = builder.Build();

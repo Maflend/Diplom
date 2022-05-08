@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Diplom.Server.Controllers
 {
@@ -6,9 +7,18 @@ namespace Diplom.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        public ProductController()
-        {
+        private readonly IMediator _mediator;
 
+        public ProductController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        public Task<ActionResult> Get([FromBody]Guid id)
+        {
+            throw new NotImplementedException();
+           // return Ok("ok");
         }
     }
 }

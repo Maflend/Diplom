@@ -2,6 +2,8 @@
 using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
 using Diplom.Application.Exeptions;
 using Diplom.Domain.Entities;
+using Diplom.Domain.Repositories.Abstracts;
+using Diplom.Infrastructure.Specifications.UserSpecifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -13,19 +15,20 @@ namespace Diplom.Application.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IDiplomContext _db;
+        private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
 
-        public AuthenticationService(IDiplomContext db, IUserService userService, IConfiguration configuration)
+        public AuthenticationService(IUserRepository userRepository, IUserService userService, IConfiguration configuration)
         {
-            _db = db;
+            _userRepository = userRepository;
             _userService = userService;
             _configuration = configuration;
         }
         public async Task<string> LoginAsync(LoginCommand request, CancellationToken cancellationToken)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
+            // var user = await _db.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
+            var user = await _userRepository.GetBySpecAsync(new GetUserByUserNameSpec(request.UserName), cancellationToken);
 
             if (user == null)
             {
@@ -43,7 +46,7 @@ namespace Diplom.Application.Services
 
         public async Task RegisterAsync(RegisterCommand request, CancellationToken cancellationToken)
         {
-            if (!_db.Users.Any(u => u.UserName == request.UserName))
+            if (! await _userRepository.AnyAsync(u => u.UserName == request.UserName, cancellationToken))
             {
                 _userService.CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 User user = new User();
@@ -52,8 +55,7 @@ namespace Diplom.Application.Services
                 user.UserName = request.UserName;
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
-                _db.Users.Add(user);
-                await _db.SaveChangesAsync(new CancellationToken());
+                await _userRepository.AddAndSaveAsync(user, cancellationToken);
             }
             else
             {
