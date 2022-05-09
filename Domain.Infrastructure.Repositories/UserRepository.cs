@@ -1,5 +1,4 @@
-﻿using Ardalis.Specification;
-using Diplom.Domain.Entities;
+﻿using Diplom.Domain.Entities;
 using Diplom.Domain.Repositories.Abstracts;
 using Diplom.Persistence.Contexts;
 using Domain.Infrastructure.Repositories.GenericRepository;

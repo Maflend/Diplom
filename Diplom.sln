@@ -25,21 +25,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Client.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Tests", "Diplom.Tests\Diplom.Tests.csproj", "{C451C4EC-711A-428A-94BF-FD4BDB2AAAE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.API.Dto", "Diplom.API.Dto\Diplom.API.Dto.csproj", "{CF4DAEAC-1BC6-4966-AE92-75F1AD7BD115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.API.Dto", "Diplom.API.Dto\Diplom.API.Dto.csproj", "{CF4DAEAC-1BC6-4966-AE92-75F1AD7BD115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.Application.Abstracts", "Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj", "{84DD10A2-4ABA-48DD-9D08-114A763BCDC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Application.Abstracts", "Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj", "{84DD10A2-4ABA-48DD-9D08-114A763BCDC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.Mapping", "Diplom.Mapping\Diplom.Mapping.csproj", "{594D50E7-9C18-4912-807B-1A0F7AF6748D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Mapping", "Diplom.Mapping\Diplom.Mapping.csproj", "{594D50E7-9C18-4912-807B-1A0F7AF6748D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{0BDBC2EB-D73A-4589-B0B2-B1780CD8B83F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Infrastructure.Repositories", "Domain.Infrastructure.Repositories\Domain.Infrastructure.Repositories.csproj", "{2C6A34A5-D90E-462F-BB73-835638A83647}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Infrastructure.Repositories", "Domain.Infrastructure.Repositories\Domain.Infrastructure.Repositories.csproj", "{2C6A34A5-D90E-462F-BB73-835638A83647}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainLayer", "DomainLayer", "{DEB26E27-DDCC-4D80-A80E-3455202B0CD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.Domain.Repositories.Abstracts", "Diplom.Domain.Repositories.Abstracts\Diplom.Domain.Repositories.Abstracts.csproj", "{92AEF4CF-7740-461F-AB05-AF00C08E3220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Domain.Repositories.Abstracts", "Diplom.Domain.Repositories.Abstracts\Diplom.Domain.Repositories.Abstracts.csproj", "{92AEF4CF-7740-461F-AB05-AF00C08E3220}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.Infrastructure.Specifications", "Diplom.Infrastructure.Specifications\Diplom.Infrastructure.Specifications.csproj", "{0924FF46-A116-4EC6-88B3-C12FBFF26F72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Infrastructure.Specifications", "Diplom.Infrastructure.Specifications\Diplom.Infrastructure.Specifications.csproj", "{0924FF46-A116-4EC6-88B3-C12FBFF26F72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,7 +118,7 @@ Global
 		{2C6A34A5-D90E-462F-BB73-835638A83647} = {0BDBC2EB-D73A-4589-B0B2-B1780CD8B83F}
 		{DEB26E27-DDCC-4D80-A80E-3455202B0CD1} = {DB30A373-3F3E-4B67-BD0D-1789374074F7}
 		{92AEF4CF-7740-461F-AB05-AF00C08E3220} = {DEB26E27-DDCC-4D80-A80E-3455202B0CD1}
-		{0924FF46-A116-4EC6-88B3-C12FBFF26F72} = {73EBC1AF-69E2-465B-957C-571F30A94987}
+		{0924FF46-A116-4EC6-88B3-C12FBFF26F72} = {0BDBC2EB-D73A-4589-B0B2-B1780CD8B83F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38BDBBB3-EF84-47F2-BE95-CAEEA9B11D7A}

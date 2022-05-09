@@ -1,6 +1,5 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
-using Diplom.Domain.Entities;
 using Diplom.Domain.Repositories.Abstracts.IGenericRepository;
 using Diplom.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -27,12 +26,15 @@ namespace Domain.Infrastructure.Repositories.GenericRepository
 
         public async Task<TEntity> UpdateAndSaveAsync(TEntity entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task DeleteAndSaveAsync(TEntity entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<TEntity>> GetAllBySpecAsync(Specification<TEntity> specification, CancellationToken cancellationToken)
@@ -53,7 +55,7 @@ namespace Domain.Infrastructure.Repositories.GenericRepository
 
         public async Task<TEntity> GetBySpecAsync(Specification<TEntity> specification, CancellationToken cancellationToken)
         {
-            var result = _dbSet.WithSpecification(specification).FirstOrDefault();
+            var result = await _dbSet.WithSpecification(specification).FirstOrDefaultAsync();
 
             return result;
         }
