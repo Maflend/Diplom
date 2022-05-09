@@ -65,5 +65,10 @@ namespace Domain.Infrastructure.Repositories.GenericRepository
             bool result = await _dbSet.AnyAsync(func, cancellationToken);
             return result;
         }
+
+        public async Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _dbSet.ToListAsync(cancellationToken);
+        }
     }
 }

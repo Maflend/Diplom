@@ -3,9 +3,9 @@ using Diplom.Domain.Entities;
 
 namespace Diplom.Infrastructure.Specifications.UserSpecifications
 {
-    public class GetUserByUserNameSpec : Specification<User>, ISingleResultSpecification
+    public class GetUserSpec : Specification<User>, ISingleResultSpecification
     {
-        public GetUserByUserNameSpec(string userName)
+        public GetUserSpec(string userName)
         {
             Query.Where(u => u.UserName == userName);
         }

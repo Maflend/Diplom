@@ -8,6 +8,7 @@ namespace Domain.Infrastructure.Repositories
         public static void ConfigureRepositories(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

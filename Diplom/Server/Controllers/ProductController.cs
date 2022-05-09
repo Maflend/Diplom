@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Diplom.Application.Abstracts.Mediator.Products.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diplom.Server.Controllers
@@ -14,11 +15,21 @@ namespace Diplom.Server.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
-        public Task<ActionResult> Get([FromBody]Guid id)
+        [HttpGet("getAll")]
+        public async Task<ActionResult> GetAll()
         {
-            throw new NotImplementedException();
-           // return Ok("ok");
+            var result = await _mediator.Send(new GetProductsQuery());
+
+            return Ok(result);
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> GetById(Guid id)
+        {
+            var result = await _mediator.Send(new GetProductQuery() { Id = id });
+
+            return Ok(result);
         }
     }
 }

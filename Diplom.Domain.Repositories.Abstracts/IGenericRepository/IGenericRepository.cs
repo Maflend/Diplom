@@ -7,6 +7,7 @@ namespace Diplom.Domain.Repositories.Abstracts.IGenericRepository
     {
         Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<List<TEntity>> GetAllBySpecAsync(Specification<TEntity> specification, CancellationToken cancellationToken);
+        Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken);
         Task<TEntity> GetBySpecAsync(Specification<TEntity> specification, CancellationToken cancellationToken);
         Task AddAndSaveAsync(TEntity entity, CancellationToken cancellationToken);
         Task<TEntity> UpdateAndSaveAsync(TEntity entity, CancellationToken cancellationToken);

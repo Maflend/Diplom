@@ -26,7 +26,7 @@ namespace Diplom.Application.MediatorHandlers.Authentication.Commands
         }
         public async Task<LoginResponseDto> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetBySpecAsync(new GetUserByUserNameSpec(request.UserName), cancellationToken);
+            var user = await _userRepository.GetBySpecAsync(new GetUserSpec(request.UserName), cancellationToken);
 
             if (user == null)
             {
