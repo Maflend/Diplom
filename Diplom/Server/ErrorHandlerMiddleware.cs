@@ -1,4 +1,5 @@
-﻿using Diplom.Application.Exeptions;
+﻿using Diplom.API.Dto;
+using Diplom.Application.Exeptions;
 using System.Net;
 using System.Text.Json;
 
@@ -36,7 +37,7 @@ namespace Diplom.Server
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var result = JsonSerializer.Serialize(new ServerErrorResponse() { Message = error.Message });
                 await response.WriteAsync(result);
             }
         }

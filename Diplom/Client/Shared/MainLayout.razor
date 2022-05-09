@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazored.Toast.Configuration
+@inherits LayoutComponentBase
 
 @*<div class="page">
     <div class="sidebar">
@@ -21,10 +22,17 @@
   
        @* <CustomNavMenu />*@
         <HtmlCssNavMenu/>
-
+        <link href="_content/Blazored.Toast/blazored-toast.min.css" rel="stylesheet" />
     
         <div class="content px-4">
             @Body
         </div>
+
+        <BlazoredToasts Position="ToastPosition.BottomRight"
+                Timeout="4"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
 
 </div>

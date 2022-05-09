@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using Diplom.API.Dto;
 using Diplom.API.Dto.Requests;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
@@ -24,6 +25,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
+                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>()).Message;
                 return false;
             }
             var desegializingResponse = await response.Content.ReadAsStringAsync();
@@ -39,6 +41,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
+                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>()).Message;
                 return false;
             }
 

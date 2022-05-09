@@ -1,8 +1,7 @@
 using Blazored.LocalStorage;
+using Blazored.Toast;
 using Diplom.Client;
 using Diplom.Client.Infrastructure;
-using Diplom.Client.Infrastructure.Authentication;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -13,7 +12,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddClientInfrastructure();
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.AddBlazoredToast();
+
 
 
 

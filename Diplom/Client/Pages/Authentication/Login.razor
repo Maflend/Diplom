@@ -1,8 +1,8 @@
 ﻿@page "/login"
 
-
-@inject IAuthenticationManager AuthManager
+@inject IAuthenticationManager AuthenticationManager
 @inject NavigationManager NavigationManager
+@inject IToastService ToastService
 
 
 <div class="card">
@@ -37,14 +37,14 @@
 
     private async void HandleLogin()
     {
-        if(await AuthManager.Login(user))
+        if(await AuthenticationManager.Login(user))
         {
             NavigationManager.NavigateTo("/");
         }
         else
         {
-           // ToastService.ShowError(AuthService.ErrorMessage);
-            AuthManager.ErrorMessage = string.Empty; 
+            ToastService.ShowError(AuthenticationManager.ErrorMessage, ErrorType.AuthenticationError.ToString());
+            AuthenticationManager.ErrorMessage = string.Empty; 
         }
     }
 }

@@ -1,13 +1,8 @@
 ﻿@page "/register"
 
-@inject IAuthenticationManager AuthManager
+@inject IAuthenticationManager AuthenticationManager
 @inject NavigationManager NavigationManager
-@*@inject IAuthService AuthService
-
-@inject itoastservice toastservice*@
-
-
-
+@inject IToastService ToastService
 
 <div class="card">
     <div class="card-header">
@@ -51,14 +46,14 @@
 
     private async void HandleRegister()
     {
-        if(await AuthManager.Register(user))
+        if(await AuthenticationManager.Register(user))
         {
             NavigationManager.NavigateTo("/login");
         }
         else
         {
-           // ToastService.ShowError(AuthService.ErrorMessage,"Error registration :(");
-            AuthManager.ErrorMessage = string.Empty; 
+            ToastService.ShowError(AuthenticationManager.ErrorMessage, ErrorType.RegistrationError.ToString());
+            AuthenticationManager.ErrorMessage = string.Empty; 
         }
 
     }
