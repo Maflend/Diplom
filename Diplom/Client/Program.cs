@@ -4,6 +4,7 @@ using Diplom.Client;
 using Diplom.Client.Infrastructure;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,6 +14,7 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddClientInfrastructure();
 builder.Services.AddBlazoredToast();
+builder.Services.AddMudServices();
 
 
 

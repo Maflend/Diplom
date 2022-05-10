@@ -1,0 +1,21 @@
+﻿
+
+<a href="/ProductDetails/@Product.Id">
+    <div class="card">
+        <img class="img-thumbnail" src="https://ae04.alicdn.com/kf/HTB16FT1RpXXXXbWXVXXq6xXFXXXH/-.jpg">
+        <div class="card-body">
+            <h5 class="card-title mb-3">
+                @Product.Name
+            </h5>
+            <p class="card-text">
+                <b>@Product.Price$</b>
+            </p>
+        </div>
+    </div>
+</a>
+
+@code {
+
+    [Parameter]
+    public ProductResponseDto Product { get; set; }
+}

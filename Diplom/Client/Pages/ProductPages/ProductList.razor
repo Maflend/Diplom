@@ -1,0 +1,33 @@
+﻿@page "/products"
+@attribute [Authorize]
+
+@using Diplom.API.Dto.Responses
+@using Diplom.Client.Infrastructure.Managers.ProductManager
+@using Diplom.Client.Shared.Product
+
+
+@inject IProductManager ProductManager
+
+<div style="display:flex; flex-flow:row wrap;">
+    @foreach (var product in Products)
+    {
+        <ProductCard Product=@product>
+
+        </ProductCard>
+    }
+</div>
+
+
+
+
+@code {
+    public List<ProductResponseDto> Products { get; set; } = new();
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Products = await ProductManager.GetAll();
+
+    }
+}
