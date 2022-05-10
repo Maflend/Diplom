@@ -2,15 +2,20 @@
 
 <a href="/ProductDetails/@Product.Id">
     <div class="card">
-        <img class="img-thumbnail" src="https://avatarko.ru/img/kartinka/33/multfilm_lyagushka_32117.jpg">
+
+        <div class="card-img-top">
+            <img  src="@Product.ImgUrl">
+        </div>
+
         <div class="card-body">
-            <h5 class="card-title mb-3">
+            <h6 class="card-title mb-3">
                 @Product.Name
-            </h5>
+            </h6>
             <p class="card-text">
-                <b>@Product.Price$</b>
+                <b>@Product.Price₽</b>
             </p>
         </div>
+
     </div>
 </a>
 

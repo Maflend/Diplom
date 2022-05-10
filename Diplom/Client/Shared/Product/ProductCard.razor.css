@@ -1,5 +1,4 @@
 ﻿
-
 a {
     margin: 10px 10px;
     text-decoration: none;
@@ -14,6 +13,12 @@ a {
     transition: box-shadow 0.3s ease-in-out;
     overflow: hidden;
     width: 10rem;
+    height: 17rem;
+    text-align: center;
+
+    display:flex;
+    flex-direction:column;
+    align-content:space-between;
 }
 
 a:hover img {
@@ -22,5 +27,27 @@ a:hover img {
 }
 
 img {
+    width: 70%;
+    height: 130px;
+ 
+    object-fit: contain;
+ 
     transition: 0.5s ease-in-out;
+}
+
+.card-img-top{
+    margin-top:10px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    margin-top:1px;
+    border-top: solid 1px;
+    border-color:gray;
+    padding-top:2px;
 }

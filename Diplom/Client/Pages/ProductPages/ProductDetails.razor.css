@@ -1,7 +1,7 @@
 ﻿.container{
-   
+    margin-top:20px;
     padding:0px;
-    overflow:hidden;
+
 }
 
 .right-container {
@@ -16,9 +16,9 @@
 }
 
 .img-container {
-    border: solid 3px;
-    border-radius: 5px;
-    overflow: hidden;
+    vertical-align:central;
+    text-align:center;
+    
 }
 
 img:hover {
@@ -26,8 +26,11 @@ img:hover {
     transition: 0.5s ease-in-out;
 }
 img {
-    overflow: hidden;
+  
     margin: 0px;
+    object-fit: contain;
+    width: 70%;
+    max-height: 400px;
 }
 
 button{

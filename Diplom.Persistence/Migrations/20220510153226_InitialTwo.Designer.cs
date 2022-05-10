@@ -4,6 +4,7 @@ using Diplom.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diplom.Persistence.Migrations
 {
     [DbContext(typeof(DiplomContext))]
-    partial class DiplomContextModelSnapshot : ModelSnapshot
+    [Migration("20220510153226_InitialTwo")]
+    partial class InitialTwo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,93 +123,93 @@ namespace Diplom.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7ccd4b58-292f-424e-8d88-6cc118e6bdec"),
+                            Id = new Guid("def4658e-6634-4ef7-9071-18197f597718"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Смартфон Apple iPhone 11 128GB с новой комплектацией черный. ID: 5863730. Артикул: 836847. Диагональ(дюйм): 6.1. Разрешение(пикс): 1792x828. Встроенная память(Гб): 128. Фотокамера(Мп): 12 + 12(двойная). Оптический зум: x2",
-                            ImgUrl = "https://items.s1.citilink.ru/1429412_v01_b.jpg",
+                            ImgUrl = "https://cdn.svyaznoy.ru/upload/iblock/989/iphone_11_b_2.jpg/resize/870x725/hq/",
                             Name = "iPhone 11",
                             Price = 54990m,
                             PurchasePrice = 32000m
                         },
                         new
                         {
-                            Id = new Guid("387ad23f-a5f4-4fe2-ac8e-c29436d65de5"),
+                            Id = new Guid("fa1c6d1c-6785-44bc-a710-777d7a4d4ca3"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Смартфон Samsung Galaxy S21 FE 128 ГБ белый. Разрешение экрана пикс: 2340 x 1080. Встроенная память, ГБ:128.",
-                            ImgUrl = "https://items.s1.citilink.ru/1659651_v01_b.jpg",
+                            ImgUrl = "https://static.galaxystore.ru/upload/resize_cache/iblock/0d9/440_440_1/0d93f182dc5448edd34f16b230f328ea.jpg",
                             Name = "Samsung Galaxy S21",
                             Price = 60990m,
                             PurchasePrice = 39000m
                         },
                         new
                         {
-                            Id = new Guid("5987d50a-9e73-4106-af87-78ebd90f6378"),
+                            Id = new Guid("fda49561-07cc-4134-8756-90baa917d57e"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
-                            Description = "Операционная система: Android Q Go. Дисплей: 6TFT. Разрешение дисплея: 960x480. Процессор: Spreadtrum SC7731E,1300МГц,4 - х ядерный. Объем оперативной памяти: 1 ГБ. Объем встроенной памяти: 32 ГБ.",
-                            ImgUrl = "https://items.s1.citilink.ru/1433141_v01_b.jpg",
-                            Name = "ZTE Blade L210",
-                            Price = 5100m,
-                            PurchasePrice = 3000m
+                            Description = "смартфон",
+                            ImgUrl = "",
+                            Name = "ZTE",
+                            Price = 750m,
+                            PurchasePrice = 600m
                         },
                         new
                         {
-                            Id = new Guid("46d756ae-de47-42de-9d9b-8b2cf1913084"),
+                            Id = new Guid("23bdc4f9-af5f-4c3e-8363-98a290d02aae"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
-                            Description = "LED-телевизор LG 49UK6200PLA с экраном диагональю 49 дюймов органично впишется в интерьер столовой, спальни или гостиной. Поддержка Ultra HD 4K с разрешением 3840х2160 делает картинку максимально реалистичной и детальной.",
-                            ImgUrl = "https://items.s1.citilink.ru/1092279_v01_b.jpg",
-                            Name = "LG 49UK6200PLA",
-                            Price = 57990m,
-                            PurchasePrice = 36000m
+                            Description = "телевизор",
+                            ImgUrl = "",
+                            Name = "LG",
+                            Price = 350m,
+                            PurchasePrice = 200m
                         },
                         new
                         {
-                            Id = new Guid("48986475-8e37-47e2-916b-f01c70b3305a"),
+                            Id = new Guid("3b22da0c-1894-419f-8634-3b14d5a628d0"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
-                            Description = "Цвет, в котором выполнен телевизор SAMSUNG UE50AU8000UXRU, - универсальный черный. В этом цвете выполнены рамка и подставка, поэтому устройство отличается нейтральным внешним видом и способно вписаться в любой интерьер. Оно выпущено в 2021-м году и обладает подсветкой Direct LED. Диагональ экрана равна 50 дюймам, что в пересчете равно целым 125 см.",
-                            ImgUrl = "https://items.s1.citilink.ru/1529485_v01_b.jpg",
-                            Name = "Samsung UE50AU8000UXRU",
-                            Price = 35000m,
-                            PurchasePrice = 57990m
+                            Description = "телевизор",
+                            ImgUrl = "",
+                            Name = "Samsung",
+                            Price = 600m,
+                            PurchasePrice = 400m
                         },
                         new
                         {
-                            Id = new Guid("09c36ac1-848c-490e-a79a-2871f80374e6"),
+                            Id = new Guid("45f6cbc7-63bc-4a06-a9f0-87abdf8bb2dc"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
-                            Description = "Телевизор LED LG 32 оснащен четырехъядерным процессором, работающим быстро и бесшумно.С его помощью обеспечиваются более динамичная цветопередача и контрастность, обработка изображений, автоматическая коррекция цвета.Изображение становится более насыщенным и естественным.Картинки с низким разрешением масштабируются и восстанавливаются.",
-                            ImgUrl = "https://items.s1.citilink.ru/1140679_v01_b.jpg",
-                            Name = "LG 32LM6350PLA",
-                            Price = 34990m,
-                            PurchasePrice = 20000m
+                            Description = "телевизор",
+                            ImgUrl = "",
+                            Name = "LG media",
+                            Price = 350m,
+                            PurchasePrice = 800m
                         },
                         new
                         {
-                            Id = new Guid("f397843c-9ff5-4f6d-85a9-0e2b0e941e18"),
+                            Id = new Guid("86fb0ae0-62e6-4955-9be6-0e71b7d5f0a2"),
                             CategoryId = new Guid("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff"),
-                            Description = "Профессиональные наушники с широким диапазоном воспроизводимых частот – AUDIO-TECHNICA ATH-M50X. Данная модель отличается строгим технологичным дизайном. Длина кабеля 3 м позволяет с комфортом расположиться в студии или за диджейским пультом. Провод можно отсоединять и при необходимости менять на другой.",
-                            ImgUrl = "https://items.s1.citilink.ru/1048584_v01_b.jpg",
-                            Name = "Audio-Technica ATH-M50X",
-                            Price = 25490m,
-                            PurchasePrice = 8000m
+                            Description = "наушники",
+                            ImgUrl = "",
+                            Name = "LG",
+                            Price = 35m,
+                            PurchasePrice = 20m
                         },
                         new
                         {
-                            Id = new Guid("c74a8644-1fe1-4596-8010-1fed4de51b92"),
+                            Id = new Guid("09c398a4-fbd0-424c-a423-a8aab97e9090"),
                             CategoryId = new Guid("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff"),
-                            Description = "Наушники KOSS Porta Pro Classic разработаны еще в восьмидесятых, но они до сих пор не сдают свои позиции и остаются популярными среди меломанов. Все благодаря высокому качеству звука. Небольшие динамики выдают насыщенные басы, от которых дрожат внутренности.",
-                            ImgUrl = "https://items.s1.citilink.ru/490813_v01_b.jpg",
-                            Name = "Koss Porta Pro Classic",
-                            Price = 3990m,
-                            PurchasePrice = 1500m
+                            Description = "наушники",
+                            ImgUrl = "",
+                            Name = "Samsung",
+                            Price = 60m,
+                            PurchasePrice = 40m
                         },
                         new
                         {
-                            Id = new Guid("15a811e7-ee5a-4597-b548-9e4755af9c95"),
+                            Id = new Guid("d24a8b23-6e54-4b74-b2ff-79a6a6118b65"),
                             CategoryId = new Guid("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff"),
-                            Description = "Audio-Tecnica ATH-MSR7B – проводные наушники, совместимые с большинством проигрывающих устройств, в том числе самыми современными. Данная модель обладает малым весом, а амбушюры и оголовье из пенного наполнителя не создают давления на голову и уши, благодаря чему наслаждаться любимыми мелодиями можно много часов подряд.",
-                            ImgUrl = "https://items.s1.citilink.ru/1141533_v01_b.jpg",
-                            Name = "Audio-Technica ATH-MSR7BBK",
-                            Price = 16990m,
-                            PurchasePrice = 11000m
+                            Description = "наушники",
+                            ImgUrl = "",
+                            Name = "LG media",
+                            Price = 22m,
+                            PurchasePrice = 15m
                         });
                 });
 

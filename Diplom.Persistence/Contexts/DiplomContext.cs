@@ -30,8 +30,8 @@ namespace Diplom.Persistence.Contexts
             modelBuilder.ApplyConfiguration(new SaleConfiguration());
 
 
-            //modelBuilder.Entity<Category>().HasData(InitialData.Categories);
-            //modelBuilder.Entity<Product>().HasData(InitialData.Products);
+            InitialData data = new InitialData();
+            data.Initialized(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { }
