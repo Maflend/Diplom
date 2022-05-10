@@ -1,0 +1,55 @@
+﻿@page "/ProductDetails/{Id:guid}"
+@using Diplom.Client.Infrastructure.Managers.ProductManager
+@attribute [Authorize]
+@inject IProductManager ProductManager
+@inject IToastService ToastService
+
+<h3 class="mb-5">Product Details</h3>
+<div class="row container">
+    <div class="col-md-6 ">
+        <div class="img-container">
+            <img class="img-fluid" src="https://avatarko.ru/img/kartinka/33/multfilm_lyagushka_32117.jpg">
+        </div>
+        
+    </div>
+    <div class="col-md-6 right-container">
+        <div class="row">
+            <h3>@Product.Name</h3>
+            <p class="mb-4">@Product.Description</p>
+            <p class="mb-4">
+                <b>
+                    @Product.Price$
+                </b>
+            </p>
+        </div>
+        <div class="row">
+            <div class="">
+                <button class="btn btn-outline-dark"
+                        @onclick="() => AddToCart_Click()">
+                    <b>Add to Cart</b>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public ProductResponseDto Product { get; set; } = new();
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Product = await ProductManager.GetById(Id);
+    }
+
+    private void AddToCart_Click()
+    {
+        ToastService.ShowInfo("Добавлено в корзину", "Корзина");
+    }
+}

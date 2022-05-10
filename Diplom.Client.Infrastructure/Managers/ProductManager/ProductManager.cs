@@ -1,10 +1,6 @@
 ﻿using Diplom.API.Dto.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.AspNetCore.WebUtilities;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diplom.Client.Infrastructure.Managers.ProductManager
 {
@@ -23,9 +19,17 @@ namespace Diplom.Client.Infrastructure.Managers.ProductManager
             return response;
         }
 
-        public Task<ProductResponseDto> GetById(Guid id)
+        public async Task<ProductResponseDto> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var query = new Dictionary<string, string>()
+            {
+                ["Id"] = $"{id}"
+            };
+
+            var uri = QueryHelpers.AddQueryString(Routes.ProductEndpoints.GetById, query);
+            var response = await _httpClient.GetFromJsonAsync<ProductResponseDto>(uri);
+
+            return response;
         }
     }
 }

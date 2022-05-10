@@ -1,88 +1,102 @@
 ﻿@inject IAuthenticationManager AuthManager
+@inject NavigationManager NavigationManager
+
+<ul>
+    <AuthorizeView>
+        <Authorized>
+            <li class="nav-item">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+            <li class="nav-item">
+                <NavLink class="nav-link" href="/products" Match="NavLinkMatch.All">
+                    <span class="oi oi-bug" aria-hidden="true"></span> Products
+                </NavLink>
+            </li>
+            <li class="nav-item" style="float:right">
+                <NavLink class="nav-link" @onclick="Logout">
+                    <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                </NavLink>
+            </li>
+            <li class="nav-item" style="float:right">
+                <NavLink class="nav-link" href="/cart" Match="NavLinkMatch.All">
+                    <span class="oi oi-cart" aria-hidden="true"></span> Корзина
+                </NavLink>
+            </li>
+
+        </Authorized>
+        <NotAuthorized>
+            <li class="nav-item" style="float:right">
+                <NavLink class="nav-link" href="/login" Match="NavLinkMatch.All">
+                    <span class="oi oi-people" aria-hidden="true"></span> Login
+                </NavLink>
+            </li>
+            <li class="nav-item" style="float:right">
+                <NavLink class="nav-link" href="/register" Match="NavLinkMatch.All">
+                    <span class="oi oi-people" aria-hidden="true"></span> Register
+                </NavLink>
+            </li>
+        </NotAuthorized>
+    </AuthorizeView>
+
+</ul>
+
+
 
 <style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  color: white;
-}
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        color: white;
+    }
 
-li {
-  float: left;
-  border-right:1px solid #bbb;
-}
+    li {
+        float: left;
+        border-right: 1px solid #bbb;
+    }
 
-li:last-child {
-  border-right: none;
-}
+        li:last-child {
+            border-right: none;
+            border-left: 1px solid #bbb;
+        }
 
-li .nav-link {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+        li .nav-link {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-.nav-link:hover{
-    color:white;
-}
+    .nav-link:hover {
+        color: white;
+        cursor: pointer;
+        background-color: #434d49;
+    }
 
-li .nav-link .nav-item :hover:not(.active) {
-  background-color: black;
-  color:white;
-}
+    li .nav-link .nav-item :hover:not(.active) {
+        background-color: black;
+        color: white;
+    }
 
-.active {
-    color:white;
-    background-color: #04AA6D;
-}
+    .active {
+        color: white;
+        background-color: #04AA6D;
+    }
+
+    .nav-link:visited {
+        color: white;
+    }
+
 </style>
-
-<body>
-    <ul>
-        <AuthorizeView>
-            <Authorized>
-                <li class="nav-item active">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        <span class="oi oi-home" aria-hidden="true"></span> Home
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="/products" Match="NavLinkMatch.All">
-                        <span class="oi oi-bug" aria-hidden="true"></span> Products
-                    </NavLink>
-                </li>
-                <li class="nav-item" style="float:right">
-                    <NavLink class="nav-link" @onclick="Logout">
-                        <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
-                    </NavLink>
-                </li>
-            </Authorized>
-            <NotAuthorized>
-                <li class="nav-item" style="float:right">
-                    <NavLink class="nav-link" href="/login" Match="NavLinkMatch.All">
-                        <span class="oi oi-people" aria-hidden="true"></span> Login
-                    </NavLink>
-                </li>
-                <li class="nav-item" style="float:right">
-                    <NavLink class="nav-link" href="/register" Match="NavLinkMatch.All">
-                        <span class="oi oi-people" aria-hidden="true"></span> Register
-                    </NavLink>
-                </li>
-            </NotAuthorized>
-        </AuthorizeView>
-
-    </ul>
-
-</body>
 
 
 @code {
-     private bool collapseNavMenu = true;
+    private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
@@ -93,5 +107,8 @@ li .nav-link .nav-item :hover:not(.active) {
     private async void Logout()
     {
         await AuthManager.Logout();
+        NavigationManager.NavigateTo("/login");
     }
 }
+
+
