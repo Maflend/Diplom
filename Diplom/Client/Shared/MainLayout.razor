@@ -1,22 +1,22 @@
 ﻿@using Blazored.Toast.Configuration
 @using Diplom.Client.Shared.NavMenu
 @inherits LayoutComponentBase
-<MudThemeProvider/>
+
 
 <div class="container">
-        <HtmlCssNavMenu/>
-       @* <NavMenu/>*@
-       
-    
-        <div class="content px-4">
-            @Body
-        </div>
 
-        <BlazoredToasts Position="ToastPosition.BottomRight"
-                Timeout="4"
-                IconType="IconType.FontAwesome"
-                SuccessClass="success-toast-override"
-                SuccessIcon="fa fa-thumbs-up"
-                ErrorIcon="fa fa-bug" />
+    <HtmlCssNavMenu />
+
+    <div class="content px-1">
+        @Body
+    </div>
+
+    <BlazoredToasts Position="ToastPosition.BottomRight"
+                    Timeout="4"
+                    IconType="IconType.FontAwesome"
+                    SuccessClass="success-toast-override"
+                    SuccessIcon="fa fa-thumbs-up"
+                    ErrorIcon="fa fa-bug" />
 
 </div>
+

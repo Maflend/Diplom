@@ -31,5 +31,18 @@ namespace Diplom.Server.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("category")]
+        public async Task<ActionResult> GetAllByCategoryId(Guid categoryId)
+        {
+            var result = await _mediator.Send(
+                new GetProductsFromCategoryQuery()
+                {
+                    CategoryId = categoryId
+                }
+                );
+
+            return Ok(result);
+        }
     }
 }

@@ -1,12 +1,12 @@
-﻿@page "/products"
-@attribute [Authorize]
-
+﻿
 @using Diplom.API.Dto.Responses
 @using Diplom.Client.Infrastructure.Managers.ProductManager
 @using Diplom.Client.Shared.Product
 
 
 @inject IProductManager ProductManager
+
+
 
 <div style="display:flex; flex-flow:row wrap;">
     @foreach (var product in Products)
@@ -23,11 +23,22 @@
 @code {
     public List<ProductResponseDto> Products { get; set; } = new();
 
-
+    [Parameter]
+    public Guid CategoryId { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
         Products = await ProductManager.GetAll();
-
+    }
+    protected async override Task OnParametersSetAsync()
+    {
+        if(CategoryId != Guid.Empty)
+        {
+            Products = await ProductManager.GetByCategoryId(CategoryId);
+        }
+        else
+        {
+            Products = await ProductManager.GetAll();
+        }
     }
 }

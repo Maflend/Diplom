@@ -1,0 +1,43 @@
+﻿.container {
+    margin-top: 10px;
+    margin-right: 0px;
+    width: auto;
+    height: auto;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-align: center;
+}
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+a :hover{
+    color:white;
+}
+
+
+
+
+.header {
+    width: 150px;
+    text-align: center;
+    vertical-align: bottom;
+    background-color: #333;
+    border: none;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 1px;
+    color: white;
+}
+
+    .header a {
+        padding: 0px;
+        margin: 0px;
+    }

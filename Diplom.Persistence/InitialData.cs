@@ -28,7 +28,7 @@ namespace Diplom.Persistence
                 },
                 new Category()
                 {
-                    Id = new Guid("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff"),
+                    Id = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
                     Name = "Наушники"
                 }
                 );
@@ -102,7 +102,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1048584_v01_b.jpg",
                     PurchasePrice = 8000,
                     Price = 25490,
-                    CategoryId = Guid.Parse("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff") 
+                    CategoryId = Guid.Parse("67f36106-149d-4e4d-b9e1-f365f498a7a6") 
                 },
                 new Product()
                 {
@@ -111,7 +111,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/490813_v01_b.jpg",
                     PurchasePrice = 1500,
                     Price = 3990,
-                    CategoryId = Guid.Parse("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff") 
+                    CategoryId = Guid.Parse("67f36106-149d-4e4d-b9e1-f365f498a7a6") 
                 },
                 new Product()
                 {
@@ -120,7 +120,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1141533_v01_b.jpg",
                     PurchasePrice = 11000,
                     Price = 16990,
-                    CategoryId = Guid.Parse("7ef0c053-2ebe-47b3-8dd0-e9462ab083ff") 
+                    CategoryId = Guid.Parse("67f36106-149d-4e4d-b9e1-f365f498a7a6") 
                 }
                 );
         }

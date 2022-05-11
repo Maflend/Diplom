@@ -19,6 +19,19 @@ namespace Diplom.Client.Infrastructure.Managers.ProductManager
             return response;
         }
 
+        public async Task<List<ProductResponseDto>> GetByCategoryId(Guid categoryid)
+        {
+            var query = new Dictionary<string, string>()
+            {
+                ["categoryId"] = $"{categoryid}"
+            };
+
+            var uri = QueryHelpers.AddQueryString(Routes.ProductEndpoints.GetByCategoryId, query);
+            var response = await _httpClient.GetFromJsonAsync<List<ProductResponseDto>>(uri);
+
+            return response;
+        }
+
         public async Task<ProductResponseDto> GetById(Guid id)
         {
             var query = new Dictionary<string, string>()
