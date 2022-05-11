@@ -5,15 +5,21 @@ namespace Diplom.Persistence
 {
     public class InitialData
     {
-
+        /// <summary>
+        /// Заполнить БД начальными данными.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         public void Initialized(ModelBuilder modelBuilder)
         {
             InitialCategories(modelBuilder);
             InitialProducts(modelBuilder);
-
         }
 
-        public void InitialCategories(ModelBuilder modelBuilder)
+        /// <summary>
+        /// Данные для категорий.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        private void InitialCategories(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
                 new Category()
@@ -34,7 +40,12 @@ namespace Diplom.Persistence
                 );
 
         }
-        public void InitialProducts(ModelBuilder modelBuilder)
+
+        /// <summary>
+        /// Данные для продуктов.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        private void InitialProducts(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(
                 // Телефоны

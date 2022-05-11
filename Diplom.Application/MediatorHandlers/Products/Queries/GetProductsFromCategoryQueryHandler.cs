@@ -7,6 +7,9 @@ using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Products.Queries
 {
+    /// <summary>
+    /// Обработчик запроса получения списка продуктов по идентификатору категории.
+    /// </summary>
     public class GetProductsFromCategoryQueryHandler : IRequestHandler<GetProductsFromCategoryQuery, List<ProductResponseDto>>
     {
         private readonly IProductRepository _productRepository;
@@ -21,6 +24,12 @@ namespace Diplom.Application.MediatorHandlers.Products.Queries
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Хэндлер.
+        /// </summary>
+        /// <param name="request"><see cref="GetProductsFromCategoryQuery"/></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns><see cref="Task{List{T}}">Task&lt;List&lt;ProductResponseDto&gt;&gt;</see></returns>
         public async Task<List<ProductResponseDto>> Handle(GetProductsFromCategoryQuery request, CancellationToken cancellationToken)
         {
             var products = await _productRepository.GetAllBySpecAsync(new GetProductsSpec(request.CategoryId), cancellationToken);

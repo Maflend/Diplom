@@ -5,9 +5,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-
 namespace Diplom.Application.Services
 {
+    /// <summary>
+    /// Сервис аутентификации.
+    /// </summary>
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IConfiguration _configuration;
@@ -17,8 +19,16 @@ namespace Diplom.Application.Services
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Утверждения пользователя.
+        /// </summary>
         public ClaimsIdentity Claims { get; set; } = new();
 
+        /// <summary>
+        /// Создать токен.
+        /// </summary>
+        /// <param name="user"><see cref="User"/></param>
+        /// <returns><see cref="string"/></returns>
         public string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>

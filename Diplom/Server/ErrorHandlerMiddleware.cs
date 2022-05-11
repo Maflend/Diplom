@@ -5,6 +5,9 @@ using System.Text.Json;
 
 namespace Diplom.Server
 {
+    /// <summary>
+    /// Middleware для отлова <see cref="ServiceException"/>.
+    /// </summary>
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;

@@ -7,6 +7,9 @@ using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Authentication.Commands
 {
+    /// <summary>
+    /// Обработчик команды регистрации.
+    /// </summary>
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Unit>
     {
         private readonly IUserRepository _userRepository;
@@ -20,6 +23,14 @@ namespace Diplom.Application.MediatorHandlers.Authentication.Commands
             _userRepository = userRepository;
             _userService = userService;
         }
+
+        /// <summary>
+        /// Хэндлер.
+        /// </summary>
+        /// <param name="request"><see cref="RegisterCommand"/></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ServiceException"></exception>
         public async Task<Unit> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
             if (!await _userRepository.AnyAsync(u => u.UserName == request.UserName, cancellationToken))

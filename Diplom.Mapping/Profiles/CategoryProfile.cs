@@ -4,6 +4,9 @@ using Diplom.Domain.Entities;
 
 namespace Diplom.Mapping.Profiles
 {
+    /// <summary>
+    /// Профиль категории.
+    /// </summary>
     public class CategoryProfile : Profile
     {
         public CategoryProfile()

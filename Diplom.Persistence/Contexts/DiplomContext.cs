@@ -1,20 +1,16 @@
-﻿using Diplom.Application.Abstracts.IServices;
-using Diplom.Domain.Entities;
+﻿using Diplom.Domain.Entities;
 using Diplom.Persistence.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Diplom.Persistence.Contexts
 {
-    public class DiplomContext : DbContext, IDiplomContext
+    /// <summary>
+    /// Контекст.
+    /// </summary>
+    public class DiplomContext : DbContext
     {
-        public DiplomContext()
-        {
-
-        }
-        public DiplomContext(DbContextOptions options) : base(options)
-        {
-
-        }
+        public DiplomContext() { }
+        public DiplomContext(DbContextOptions options) : base(options) { }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Sale> Sales { get; set; }

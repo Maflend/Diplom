@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Diplom.Persistence.EntityTypeConfigurations
 {
+    /// <summary>
+    /// Конфигурация продукта
+    /// </summary>
     internal class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)

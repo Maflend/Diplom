@@ -8,6 +8,9 @@ using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Authentication.Commands
 {
+    /// <summary>
+    /// Обработчик команды авторизации.
+    /// </summary>
     public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponseDto>
     {
         private readonly IAuthenticationService _authenticationService;
@@ -24,6 +27,14 @@ namespace Diplom.Application.MediatorHandlers.Authentication.Commands
             _userService = userService;
             _userRepository = userRepository;
         }
+
+        /// <summary>
+        /// Хэндлер.
+        /// </summary>
+        /// <param name="request"><see cref="LoginCommand"/></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns><see cref="Task{TResult}">Task&lt;LoginResponseDto&gt;</see></returns>
+        /// <exception cref="ServiceException"></exception>
         public async Task<LoginResponseDto> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetBySpecAsync(new GetUserSpec(request.UserName), cancellationToken);

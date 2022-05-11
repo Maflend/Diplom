@@ -13,7 +13,6 @@
     flex-direction: column;
 }
 
-
 a {
     text-decoration: none;
 }
@@ -21,9 +20,6 @@ a {
 a :hover{
     color:white;
 }
-
-
-
 
 .header {
     width: 150px;

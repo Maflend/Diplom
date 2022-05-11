@@ -1,9 +1,15 @@
 ﻿namespace Diplom.Domain.Entities
 {
-    public class Category
+    public class Category : BaseEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        /// <summary>
+        /// Наименование.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Продукты.
+        /// </summary>
         public List<Product> Products { get; set; }
     }
 }

@@ -6,6 +6,9 @@ using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Categories.Queries
 {
+    /// <summary>
+    /// Обработчик запроса получения списка категорий.
+    /// </summary>
     public class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, List<CategoryResponseDto>>
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -16,6 +19,13 @@ namespace Diplom.Application.MediatorHandlers.Categories.Queries
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// Хэндлер.
+        /// </summary>
+        /// <param name="request"><see cref="GetCategoriesQuery"/></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns><see cref="Task{List{T}}">Task&lt;List&lt;CategoryResponseDto&gt;&gt;</see></returns>
         public async Task<List<CategoryResponseDto>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
             var categories = await _categoryRepository.GetAllAsync(cancellationToken);

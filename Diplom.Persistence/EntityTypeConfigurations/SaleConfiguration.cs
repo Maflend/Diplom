@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Diplom.Persistence.EntityTypeConfigurations
 {
-    public class SaleConfiguration : IEntityTypeConfiguration<Sale>
+    /// <summary>
+    /// Конфигурация продажи.
+    /// </summary>
+    internal class SaleConfiguration : IEntityTypeConfiguration<Sale>
     {
         public void Configure(EntityTypeBuilder<Sale> builder)
         {

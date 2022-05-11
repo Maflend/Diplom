@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Diplom.Persistence.EntityTypeConfigurations
 {
+    /// <summary>
+    /// Конфигурация юзера.
+    /// </summary>
     internal class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)

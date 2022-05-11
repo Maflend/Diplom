@@ -1,10 +1,23 @@
 ﻿namespace Diplom.Domain.Entities
 {
-    public class Sale
+    /// <summary>
+    /// Продажа.
+    /// </summary>
+    public class Sale : BaseEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        /// <summary>
+        /// Количество.
+        /// </summary>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Продукт.
+        /// </summary>
         public Product Product { get; set; }
+
+        /// <summary>
+        /// Заказ.
+        /// </summary>
         public Order Order { get; set; }
     }
 }

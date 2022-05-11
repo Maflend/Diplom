@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diplom.API.Dto
+﻿namespace Diplom.API.Dto
 {
+    /// <summary>
+    /// Класс ответа с информации об ошибки.
+    /// </summary>
     public class ServerErrorResponse
     {
+        /// <summary>
+        /// Текст ошибки.
+        /// </summary>
         public string Message { get; set; }
     }
 }

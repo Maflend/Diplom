@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diplom.Persistence.Migrations
 {
     [DbContext(typeof(DiplomContext))]
-    [Migration("20220510211331_InitialFour")]
-    partial class InitialFour
+    [Migration("20220511174257_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,7 +123,7 @@ namespace Diplom.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8cf5c0db-ad0e-463d-9b59-f3adb186ac64"),
+                            Id = new Guid("b583d4f5-bd41-4296-9e86-08495dab7dc0"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Смартфон Apple iPhone 11 128GB с новой комплектацией черный. ID: 5863730. Артикул: 836847. Диагональ(дюйм): 6.1. Разрешение(пикс): 1792x828. Встроенная память(Гб): 128. Фотокамера(Мп): 12 + 12(двойная). Оптический зум: x2",
                             ImgUrl = "https://items.s1.citilink.ru/1429412_v01_b.jpg",
@@ -133,7 +133,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9577f90c-f370-479e-9011-30d2e1dfa89c"),
+                            Id = new Guid("6c4f9271-d9d4-4ffa-ad67-81f854fe65c7"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Смартфон Samsung Galaxy S21 FE 128 ГБ белый. Разрешение экрана пикс: 2340 x 1080. Встроенная память, ГБ:128.",
                             ImgUrl = "https://items.s1.citilink.ru/1659651_v01_b.jpg",
@@ -143,7 +143,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6b9bff08-5e8e-4505-8b35-39faad4f49d2"),
+                            Id = new Guid("a476254b-46ac-41f8-b1b6-5ebd4e265b0d"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Операционная система: Android Q Go. Дисплей: 6TFT. Разрешение дисплея: 960x480. Процессор: Spreadtrum SC7731E,1300МГц,4 - х ядерный. Объем оперативной памяти: 1 ГБ. Объем встроенной памяти: 32 ГБ.",
                             ImgUrl = "https://items.s1.citilink.ru/1433141_v01_b.jpg",
@@ -153,7 +153,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f7edfb58-4842-4b4d-9563-e8fe4626fc1a"),
+                            Id = new Guid("1ede832d-9992-45e4-ab46-3feae3330a6a"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
                             Description = "LED-телевизор LG 49UK6200PLA с экраном диагональю 49 дюймов органично впишется в интерьер столовой, спальни или гостиной. Поддержка Ultra HD 4K с разрешением 3840х2160 делает картинку максимально реалистичной и детальной.",
                             ImgUrl = "https://items.s1.citilink.ru/1092279_v01_b.jpg",
@@ -163,7 +163,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ac7f7b99-46b4-4ba1-a586-1054406da995"),
+                            Id = new Guid("22845414-8f7a-4487-9403-f7efe135f0fd"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
                             Description = "Цвет, в котором выполнен телевизор SAMSUNG UE50AU8000UXRU, - универсальный черный. В этом цвете выполнены рамка и подставка, поэтому устройство отличается нейтральным внешним видом и способно вписаться в любой интерьер. Оно выпущено в 2021-м году и обладает подсветкой Direct LED. Диагональ экрана равна 50 дюймам, что в пересчете равно целым 125 см.",
                             ImgUrl = "https://items.s1.citilink.ru/1529485_v01_b.jpg",
@@ -173,7 +173,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("62fbf839-9416-49e7-99e4-29856df0b509"),
+                            Id = new Guid("4850b48f-51f7-4244-9bd7-aaab9830639a"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
                             Description = "Телевизор LED LG 32 оснащен четырехъядерным процессором, работающим быстро и бесшумно.С его помощью обеспечиваются более динамичная цветопередача и контрастность, обработка изображений, автоматическая коррекция цвета.Изображение становится более насыщенным и естественным.Картинки с низким разрешением масштабируются и восстанавливаются.",
                             ImgUrl = "https://items.s1.citilink.ru/1140679_v01_b.jpg",
@@ -183,7 +183,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("003c1506-ac20-436f-a4ad-568d4474857d"),
+                            Id = new Guid("e1752711-8d09-4e73-952d-518af4bb80ab"),
                             CategoryId = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
                             Description = "Профессиональные наушники с широким диапазоном воспроизводимых частот – AUDIO-TECHNICA ATH-M50X. Данная модель отличается строгим технологичным дизайном. Длина кабеля 3 м позволяет с комфортом расположиться в студии или за диджейским пультом. Провод можно отсоединять и при необходимости менять на другой.",
                             ImgUrl = "https://items.s1.citilink.ru/1048584_v01_b.jpg",
@@ -193,7 +193,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0e801de3-43db-4ac5-886e-01f0ce6f9f57"),
+                            Id = new Guid("d397d96e-8564-4e06-9680-354485b595ff"),
                             CategoryId = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
                             Description = "Наушники KOSS Porta Pro Classic разработаны еще в восьмидесятых, но они до сих пор не сдают свои позиции и остаются популярными среди меломанов. Все благодаря высокому качеству звука. Небольшие динамики выдают насыщенные басы, от которых дрожат внутренности.",
                             ImgUrl = "https://items.s1.citilink.ru/490813_v01_b.jpg",
@@ -203,7 +203,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c74d342e-5eb6-4523-b3bd-e00cd5de7c98"),
+                            Id = new Guid("aec518f2-a013-44ad-b2c0-62365a800dfa"),
                             CategoryId = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
                             Description = "Audio-Tecnica ATH-MSR7B – проводные наушники, совместимые с большинством проигрывающих устройств, в том числе самыми современными. Данная модель обладает малым весом, а амбушюры и оголовье из пенного наполнителя не создают давления на голову и уши, благодаря чему наслаждаться любимыми мелодиями можно много часов подряд.",
                             ImgUrl = "https://items.s1.citilink.ru/1141533_v01_b.jpg",
