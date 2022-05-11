@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using Diplom.Client.Infrastructure.Services.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 using System.Text.Json;
@@ -10,34 +11,13 @@ namespace Diplom.Client.Infrastructure.Authentication
     /// </summary>
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private readonly ILocalStorageService _localStorage;
         private readonly HttpClient _http;
+        private readonly ITokenService _authenticationService;
 
-        public CustomAuthenticationStateProvider(ILocalStorageService localStorage, HttpClient http)
+        public CustomAuthenticationStateProvider(HttpClient http, ITokenService authenticationService)
         {
-            _localStorage = localStorage;
             _http = http;
-        }
-
-        /// <summary>
-        /// Получить токен из локального хранилища.
-        /// </summary>
-        /// <returns><see cref="Task{TResult}">Task&lt;string&gt;</see></returns>
-        public async Task<string> GetTokenAsync()
-            => await _localStorage.GetItemAsync<string>("token");
-
-        /// <summary>
-        /// Установить токен в локальное хранилище.
-        /// </summary>
-        /// <param name="token">Токен.</param>
-        /// <returns><see cref="Task"></see></returns>
-        public async Task SetTokenAsync(string token)
-        {
-            if (token != null)
-            {
-                await _localStorage.SetItemAsync<string>("token", token);
-            }
-            NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+            _authenticationService = authenticationService;
         }
 
         /// <summary>
@@ -47,14 +27,21 @@ namespace Diplom.Client.Infrastructure.Authentication
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var state = new AuthenticationState(new ClaimsPrincipal());
-            var token = await GetTokenAsync();
+            var token = await _authenticationService.GetTokenAsync();
 
             if (!string.IsNullOrEmpty(token))
             {
-                var claims = ParseClaimsFromJwt(token);
+                try
+                {
+                    var claims = ParseClaimsFromJwt(token);
 
-                var identity = new ClaimsIdentity(claims, "AuthenticationJWT");
-                state = new AuthenticationState(new ClaimsPrincipal(identity));
+                    var identity = new ClaimsIdentity(claims, "AuthenticationJWT");
+                    state = new AuthenticationState(new ClaimsPrincipal(identity));
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Error GetAuthenticationStateAsync: " + ex.Message);
+                }
 
             }
             NotifyAuthenticationStateChanged(Task.FromResult(state));

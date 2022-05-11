@@ -1,5 +1,7 @@
 ﻿using Diplom.API.Dto.Responses;
+using Diplom.Client.Infrastructure.Services.Authentication;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace Diplom.Client.Infrastructure.Managers.ProductManager
@@ -7,13 +9,17 @@ namespace Diplom.Client.Infrastructure.Managers.ProductManager
     public class ProductManager : IProductManager
     {
         private readonly HttpClient _httpClient;
+        private readonly ITokenService _tokenService;
 
-        public ProductManager(HttpClient httpClient)
+        public ProductManager(HttpClient httpClient, ITokenService tokenService)
         {
             _httpClient = httpClient;
+            _tokenService = tokenService;
         }
         public async Task<List<ProductResponseDto>> GetAll()
         {
+            var token = await _tokenService.GetTokenAsync();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _httpClient.GetFromJsonAsync<List<ProductResponseDto>>(Routes.ProductEndpoints.GetAll);
 
             return response;

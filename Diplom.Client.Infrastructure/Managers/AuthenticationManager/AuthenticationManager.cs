@@ -1,6 +1,8 @@
 ﻿using Blazored.LocalStorage;
 using Diplom.API.Dto;
 using Diplom.API.Dto.Requests;
+using Diplom.API.Dto.Responses;
+using Diplom.Client.Infrastructure.Services.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 
@@ -9,15 +11,15 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
     public class AuthenticationManager : IAuthenticationManager
     {
         private readonly HttpClient _httpClient;
-        private readonly ILocalStorageService _localStorage;
         private readonly AuthenticationStateProvider _authenticationStateProvider;
+        private readonly ITokenService _authenticationService;
 
         public string ErrorMessage { get; set; } = string.Empty;
-        public AuthenticationManager(HttpClient httpClient, ILocalStorageService localStorage, AuthenticationStateProvider authenticationStateProvider)
+        public AuthenticationManager(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, ITokenService authenticationService)
         {
             _httpClient = httpClient;
-            _localStorage = localStorage;
             _authenticationStateProvider = authenticationStateProvider;
+            _authenticationService = authenticationService;
         }
         public async Task<bool> Login(LoginRequestDto request)
         {
@@ -25,11 +27,11 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>()).Message;
+                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>())?.Message ?? string.Empty;
                 return false;
             }
-            var desegializingResponse = await response.Content.ReadAsStringAsync();
-            await _localStorage.SetItemAsync("token", desegializingResponse);
+            var token = (await response.Content.ReadFromJsonAsync<LoginResponseDto>())?.Token ?? string.Empty;
+            await _authenticationService.SetTokenAsync(token);
             await _authenticationStateProvider.GetAuthenticationStateAsync();
 
             return true;
@@ -41,7 +43,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>()).Message;
+                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>())?.Message ?? string.Empty;
                 return false;
             }
 
@@ -50,7 +52,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
         public async Task Logout()
         {
-            await _localStorage.RemoveItemAsync("token");
+            await _authenticationService.DeleteTokenAsync();
             await _authenticationStateProvider.GetAuthenticationStateAsync();
         }
     }

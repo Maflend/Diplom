@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Mediator\Authentication\Queries\" />
     <Folder Include="Mediator\Categories\Commands\" />
+    <Folder Include="Mediator\Orders\Queries\" />
     <Folder Include="Mediator\Products\Commands\" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Products.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diplom.Server.Controllers
@@ -23,6 +24,7 @@ namespace Diplom.Server.Controllers
         /// Получить все продукты.
         /// </summary>
         /// <returns>List<<see cref="ProductResponseDto"/>>.</returns>
+        [Authorize]
         [HttpGet("getAll")]
         public async Task<ActionResult<List<ProductResponseDto>>> GetAll()
         {

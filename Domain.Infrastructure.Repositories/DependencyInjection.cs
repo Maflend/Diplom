@@ -17,6 +17,8 @@ namespace Domain.Infrastructure.Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
         }
     }
 }

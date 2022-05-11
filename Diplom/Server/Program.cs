@@ -5,6 +5,9 @@ using Diplom.Persistence;
 using Diplom.Server;
 using Domain.Infrastructure.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,21 @@ builder.Services.ConfigureRepositories();
 
 builder.Services.AddMediatR(typeof(ApplicationAbstractionAssembly), typeof(ApplicationAssembly));
 builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+            .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,8 +56,9 @@ app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
+app.UseAuthentication();
 app.UseRouting();
-
+app.UseAuthorization();
 
 app.MapRazorPages();
 app.UseMiddleware<ErrorHandlerMiddleware>();

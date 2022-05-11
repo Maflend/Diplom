@@ -43,7 +43,7 @@ namespace Diplom.Server.Controllers
         /// <param name="request"><see cref="LoginRequestDto"/></param>
         /// <returns>Токен.</returns>
         [HttpPost("login")]
-        public async Task<ActionResult<string>> LoginAsync(LoginRequestDto request)
+        public async Task<ActionResult<LoginResponseDto>> LoginAsync(LoginRequestDto request)
         {
             LoginCommand loginCommand = _mapper.Map<LoginCommand>(request);
             var response = await _mediator.Send(loginCommand);
