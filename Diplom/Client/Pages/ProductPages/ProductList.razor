@@ -26,19 +26,25 @@
     [Parameter]
     public Guid CategoryId { get; set; }
 
+    [CascadingParameter]
+    public Error Error { get; set; }
+
     protected async override Task OnInitializedAsync()
     {
         Products = await ProductManager.GetAll();
     }
     protected async override Task OnParametersSetAsync()
     {
-        if(CategoryId != Guid.Empty)
-        {
-            Products = await ProductManager.GetByCategoryId(CategoryId);
-        }
-        else
-        {
-            Products = await ProductManager.GetAll();
-        }
+       
+            if(CategoryId != Guid.Empty)
+            {
+                Products = await ProductManager.GetByCategoryId(CategoryId);
+            }
+            else
+            {
+                Products = await ProductManager.GetAll();
+            }
+        
+
     }
 }

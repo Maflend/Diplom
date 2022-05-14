@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс ответа с информации об ошибки.
     /// </summary>
-    public class ServerErrorResponse
+    public class ServerResponseError
     {
         /// <summary>
         /// Текст ошибки.

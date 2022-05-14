@@ -40,7 +40,7 @@ namespace Diplom.Server
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-                var result = JsonSerializer.Serialize(new ServerErrorResponse() { Message = error.Message });
+                var result = JsonSerializer.Serialize(new ServerResponseError() { Message = error.Message });
                 await response.WriteAsync(result);
             }
         }

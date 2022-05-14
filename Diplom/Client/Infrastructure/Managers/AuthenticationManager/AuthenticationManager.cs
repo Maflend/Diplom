@@ -27,7 +27,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>())?.Message ?? string.Empty;
+                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerResponseError>())?.Message ?? string.Empty;
                 return false;
             }
             var token = (await response.Content.ReadFromJsonAsync<LoginResponseDto>())?.Token ?? string.Empty;
@@ -43,7 +43,7 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerErrorResponse>())?.Message ?? string.Empty;
+                ErrorMessage = (await response.Content.ReadFromJsonAsync<ServerResponseError>())?.Message ?? string.Empty;
                 return false;
             }
 
