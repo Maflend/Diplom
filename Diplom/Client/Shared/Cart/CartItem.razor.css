@@ -1,0 +1,45 @@
+﻿.item-card {
+    margin-top: 20px;
+    border: solid 2px;
+    border-radius: 10px;
+    border-color: grey;
+    padding: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.info-down {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0px;
+}
+
+.btns{
+    margin-bottom:4px;
+}
+
+.info-down button {
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.img-card {
+    text-align: center;
+    padding: 1% 0;
+}
+
+img:hover {
+    transform: scale(1.07);
+    transition: 0.5s ease-in-out;
+}
+
+img {
+    object-fit: contain;
+    width: 90%;
+    max-height: 200px;
+}

@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
+using Diplom.API.Dto.Dtos;
 using Diplom.API.Dto.Requests;
+using Diplom.API.Dto.Responses;
+using Diplom.Application.Abstracts.Mediator.Orders.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Diplom.Server.Controllers
 {
@@ -19,12 +24,21 @@ namespace Diplom.Server.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> CreateOrderAsync(List<SaleRequestDto> sales)
+        [Authorize(Roles = "Client")]
+        [HttpPost("create")]
+        public async Task<ActionResult<OrderResponseDto>> CreateOrderAsync(List<SaleRequestDto> sales)
         {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userName = claimsIdentity?.FindFirst(ClaimTypes.Name)?.Value;
+            var createOrderCommand = new CreateOrderCommand()
+            {
+                Sales = _mapper.Map<List<CreateSaleDto>>(sales),
+                UserName = userName
+            };
 
+            var order = await _mediator.Send(createOrderCommand);
 
-            return Ok();
+            return Ok(order);
         }
     }
 }

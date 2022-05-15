@@ -1,13 +1,15 @@
 using Blazored.LocalStorage;
+using Blazored.Modal;
 using Blazored.Toast;
 using Diplom.Client;
 using Diplom.Client.Infrastructure;
 using Diplom.Client.Infrastructure.Authentication;
 using Diplom.Client.Infrastructure.Services.Http;
+using Diplom.Mapping;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
-using Toolbelt.Blazor.Extensions.DependencyInjection;
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -17,7 +19,9 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddClientInfrastructure();
 builder.Services.AddBlazoredToast();
+builder.Services.AddBlazoredModal();
 builder.Services.AddMudServices();
+builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 
 builder.Services.AddScoped<AuthenticationHeaderHandle>();
 builder.Services.AddScoped<HttpPipeline>();

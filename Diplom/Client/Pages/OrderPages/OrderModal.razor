@@ -1,0 +1,34 @@
+﻿@using AutoMapper
+@using Diplom.API.Dto.Dtos
+@using Diplom.Client.Infrastructure.Managers.OrderManager
+@inject IOrderManager OrderManager
+@inject IMapper Mapper
+
+
+<div style="margin-bottom:10px;">
+    <h4>Номер заказа: @Order.Id</h4>
+    <p style="margin-top:5px;">Дата создания: @Order.CreateDate</p>
+</div>
+<div style="display:flex; justify-content:flex-end;">
+    <button @onclick="ModalInstance.CloseAsync" class="btn btn-secondary">Закрыть</button>
+</div>
+   
+
+@code {
+    public OrderResponseDto Order { get; set; } = new();
+
+    [CascadingParameter] 
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public List<CartDto> CartItems{ get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Order = await OrderManager.CreateOrderAsync(Mapper.Map<List<SaleRequestDto>>(CartItems));
+    }
+    private void Close()
+    {
+        ModalInstance.CloseAsync();
+    }
+}

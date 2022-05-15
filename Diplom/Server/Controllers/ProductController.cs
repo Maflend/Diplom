@@ -3,6 +3,7 @@ using Diplom.Application.Abstracts.Mediator.Products.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Diplom.Server.Controllers
 {

@@ -1,7 +1,73 @@
 ﻿@page "/cart"
+@using AutoMapper
+@using Diplom.API.Dto.Dtos
+@using Diplom.Client.Infrastructure.Managers.OrderManager
+@using Diplom.Client.Infrastructure.Managers.ProductManager
+@using Diplom.Client.Infrastructure.Services.Cart
+@using Diplom.Client.Pages.OrderPages
+@using Diplom.Client.Shared.Cart
 
+@inject IOrderManager OrderManager
+@inject ICartService CartService
+@inject IProductManager ProductManager
+
+<div class="container">
+    @if (CartItems.Any())
+    {
+        @foreach (var item in CartItems)
+        {
+            <CartItem Item="item"
+              DeleteFromCartEvent="async ()=>{await InvokeAsync(this.StateHasChanged); await OnInitializedAsync();}"
+              ChangeCartItem="ChangeCartItem">
+            </CartItem>
+        }
+    }
+    else
+    {
+        <div style="text-align:center;">
+            <h4>Корзина пустая</h4>
+        </div>
+    }
+</div>
+
+<div class="cart-info">
+    <button @onclick="async() => await CreateOrderAsync()" class="btn" disabled="@(!CartItems.Any())">
+        <b>Оплатить</b> @CartItems.Sum(c=>c.Product.Price * c.Quantity)₽
+    </button>
+</div>
 
 
 @code {
+    public List<CartDto> CartItems { get; set; } = new();
 
+    [CascadingParameter] public IModalService Modal { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        CartItems = await CartService.GetSalesAsync();
+
+    }
+
+
+    private async Task CreateOrderAsync()
+    {
+        
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(CartItems), CartItems);
+        var orderModal = Modal.Show<OrderModal>("Детали заказа", parameters);
+
+        var result = await orderModal.Result;
+
+        if (!result.Cancelled || result.Cancelled)
+        {
+            await CartService.Clear();
+            await InvokeAsync(this.StateHasChanged);
+            await OnInitializedAsync();
+        }
+    }
+
+    private void ChangeCartItem(CartDto item)
+    {
+        CartItems.Where(c => c.Product.Id == item.Product.Id).Select(c => c.Quantity = item.Quantity);
+    }
 }

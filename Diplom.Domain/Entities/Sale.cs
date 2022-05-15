@@ -11,6 +11,11 @@
         public int Quantity { get; set; }
 
         /// <summary>
+        /// Идентификатор продукта.
+        /// </summary>
+        public Guid ProductId { get; set; }
+
+        /// <summary>
         /// Продукт.
         /// </summary>
         public Product Product { get; set; }

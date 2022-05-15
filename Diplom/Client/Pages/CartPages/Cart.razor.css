@@ -1,2 +1,23 @@
-﻿body {
+﻿.container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
 }
+
+
+.cart-info {
+    position: fixed;
+    bottom: 100px;
+    left: 75%;
+    right: 25%;
+}
+    .cart-info button {
+        border-radius: 20px;
+        width: 150px;
+        background-color: #04AA6D;
+        color: white;
+        box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+        .cart-info button:hover {
+            background-color: #008234;
+        }

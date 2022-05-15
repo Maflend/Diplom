@@ -3,8 +3,8 @@ using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Orders.Commands;
 using Diplom.Domain.Entities;
 using Diplom.Domain.Repositories.Abstracts;
+using Diplom.Infrastructure.Specifications.UserSpecifications;
 using MediatR;
-using System.Security.Claims;
 
 namespace Diplom.Application.MediatorHandlers.Orders.Commands
 {
@@ -12,22 +12,30 @@ namespace Diplom.Application.MediatorHandlers.Orders.Commands
     {
         private readonly IMapper _mapper;
         private readonly IOrderRepository _orderRepository;
+        private readonly IUserRepository _userRepository;
 
-        public CreateOrderCommandHandler(IMapper mapper, IOrderRepository orderRepository)
+        public CreateOrderCommandHandler(
+            IMapper mapper,
+            IOrderRepository orderRepository,
+            IUserRepository userRepository
+            )
         {
             _mapper = mapper;
             _orderRepository = orderRepository;
+            _userRepository = userRepository;
         }
         public async Task<OrderResponseDto> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            Order order = new Order()
+            var order = new Order()
             {
-               
-        };
-           
+                CreateDate = DateTime.Now,
+                Sales = _mapper.Map<List<Sale>>(request.Sales),
+                User = await _userRepository.GetBySpecAsync(new GetUserSpec(request.UserName), cancellationToken)
+            };
 
+            await _orderRepository.AddAndSaveAsync(order, cancellationToken);
 
-            throw new NotImplementedException();
+            return _mapper.Map<OrderResponseDto>(order);
         }
     }
 }

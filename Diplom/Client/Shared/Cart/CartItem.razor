@@ -1,0 +1,63 @@
+﻿@using Diplom.API.Dto.Dtos
+@inject ICartService CartService
+<div class="item-card row">
+    <div class="col-md-6 img-card">
+        <img class="" src="@Item.Product.ImgUrl">
+    </div>
+    <div class="col-md-6 info-card">
+        <div class="row info-top">
+            <h3>@Item.Product.Name</h3>
+            <p class="mb-4">@Item.Product.Description</p>
+        </div>
+        <div class="info-down">
+            <p style="">
+                <b>Количество: @Item.Quantity</b>
+                <div class="btn-group-vertical btns">
+                    <button @onclick="async ()=>{Increment(); await ChangeSale(); }"><i class="oi oi-caret-top"></i></button>
+                    <button @onclick="async ()=>{Decrement(); await ChangeSale(); }"><i class="oi oi-caret-bottom"></i></button>
+                </div>
+            </p>
+
+            <p><b>Цена: @Item.Product.Price₽</b></p>
+
+            <button class="btn btn-danger" @onclick="async ()=> await Delete(Item.Product.Id)"><i class="oi oi-x" /></button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public CartDto Item { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<CartDto> ChangeCartItem  { get; set; }
+
+    [Parameter]
+    public EventCallback DeleteFromCartEvent  { get; set; }
+
+    private void Increment()
+    {
+
+        Item.Quantity++;
+
+    }
+    private void Decrement()
+    {
+         if  (Item.Quantity >  1)
+        {
+            Item.Quantity--;
+        }
+    }
+
+    private async Task Delete(Guid productId)
+    {
+        await CartService.DeleteSaleAsync(productId);
+        await DeleteFromCartEvent.InvokeAsync();
+    }
+
+    private async Task ChangeSale()
+    {
+        await CartService.UpdateSaleAsync(Item);
+        await ChangeCartItem.InvokeAsync(Item);
+    }
+}

@@ -1,9 +1,12 @@
 ﻿@page "/ProductDetails/{Id:guid}"
+@using Blazored.LocalStorage
+@using Diplom.API.Dto.Dtos
 @using Diplom.Client.Infrastructure.Managers.ProductManager
+@using Diplom.Client.Infrastructure.Services.Cart
 @attribute [Authorize]
 @inject IProductManager ProductManager
 @inject IToastService ToastService
-
+@inject ICartService CartService
 
 <div class="row container">
     <div class="col-md-6 ">
@@ -25,7 +28,7 @@
                 </b>
             </p>
             <button class="btn btn-outline-dark"
-                    @onclick="() => AddToCart_Click()">
+                    @onclick="async() => await AddToCart_Click()">
                 <b>Add to Cart</b>
             </button>
 
@@ -41,15 +44,19 @@
 
     public ProductResponseDto Product { get; set; } = new();
 
-
-
     protected async override Task OnInitializedAsync()
     {
         Product = await ProductManager.GetById(Id);
     }
 
-    private void AddToCart_Click()
+    private async Task AddToCart_Click()
     {
-        ToastService.ShowInfo("Добавлено в корзину", "Корзина");
+        await CartService.AddSaleAsync(new CartDto()
+            {
+                Product = Product,
+                Quantity = 1
+            });
+
+        ToastService.ShowInfo($"Добавлено в корзину: {Product.Name}", "Корзина");
     }
 }

@@ -1,10 +1,12 @@
 ﻿
 @using Diplom.API.Dto.Responses
+@using Diplom.Client.Infrastructure.Managers.OrderManager
 @using Diplom.Client.Infrastructure.Managers.ProductManager
 @using Diplom.Client.Shared.Product
 
 
 @inject IProductManager ProductManager
+@inject IOrderManager OrderManager
 
 
 
@@ -35,7 +37,6 @@
     }
     protected async override Task OnParametersSetAsync()
     {
-       
             if(CategoryId != Guid.Empty)
             {
                 Products = await ProductManager.GetByCategoryId(CategoryId);

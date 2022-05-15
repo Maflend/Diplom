@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="age">Ваш возвраст</label>
-            <InputNumber id="age" @bind-Value="user.Age" class="form-control"></InputNumber>
+            <InputNumber id="age" @bind-Value="user.Age" class="form-control" type="number"></InputNumber>
             <ValidationMessage For="@(()=> user.Age)"/>
         </div>
          <div class="form-group">
