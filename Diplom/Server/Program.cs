@@ -1,9 +1,9 @@
 using Diplom.Application;
 using Diplom.Application.Abstracts;
-using Diplom.Mapping;
+using Diplom.AutoMapper;
+using Diplom.Infrastructure.Repositories;
 using Diplom.Persistence;
 using Diplom.Server;
-using Domain.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -16,12 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddPersistence(builder.Configuration);
-builder.Services.AddApplication();
+builder.Services.ConfigurePersistence(builder.Configuration);
+builder.Services.ConfigureApplication();
 builder.Services.ConfigureRepositories();
+builder.Services.ConfigureAutoMapper();
 
 builder.Services.AddMediatR(typeof(ApplicationAbstractionAssembly), typeof(ApplicationAssembly));
-builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

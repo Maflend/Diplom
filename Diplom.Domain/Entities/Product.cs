@@ -1,4 +1,6 @@
-﻿namespace Diplom.Domain.Entities
+﻿using Diplom.Domain.Entities.Base;
+
+namespace Diplom.Domain.Entities
 {
     /// <summary>
     /// Продукт.

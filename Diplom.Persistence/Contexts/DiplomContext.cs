@@ -25,7 +25,6 @@ namespace Diplom.Persistence.Contexts
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new SaleConfiguration());
 
-
             InitialData data = new InitialData();
             data.Initialized(modelBuilder);
         }

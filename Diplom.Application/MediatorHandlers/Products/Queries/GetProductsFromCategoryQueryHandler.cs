@@ -2,7 +2,7 @@
 using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Products.Queries;
 using Diplom.Domain.Repositories.Abstracts;
-using Diplom.Infrastructure.Specifications.ProductSpecifications;
+using Diplom.Domain.Specifications.ProductSpecifications;
 using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Products.Queries

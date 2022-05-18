@@ -3,7 +3,7 @@ using Diplom.Application.Abstracts.IServices;
 using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
 using Diplom.Application.Exeptions;
 using Diplom.Domain.Repositories.Abstracts;
-using Diplom.Infrastructure.Specifications.UserSpecifications;
+using Diplom.Domain.Specifications.UserSpecifications;
 using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Authentication.Commands

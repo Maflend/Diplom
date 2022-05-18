@@ -5,7 +5,7 @@ using Diplom.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Domain.Infrastructure.Repositories.GenericRepository
+namespace Diplom.Infrastructure.Repositories.GenericRepository
 {
     /// <summary>
     /// Общий репозиторий.

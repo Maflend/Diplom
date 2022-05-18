@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
@@ -21,9 +19,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj" />
     <ProjectReference Include="..\..\Diplom.Application\Diplom.Application.csproj" />
+    <ProjectReference Include="..\..\Diplom.AutoMapper\Diplom.AutoMapper.csproj" />
     <ProjectReference Include="..\..\Diplom.Mapping\Diplom.Mapping.csproj" />
     <ProjectReference Include="..\..\Diplom.Persistence\Diplom.Persistence.csproj" />
-    <ProjectReference Include="..\..\Domain.Infrastructure.Repositories\Domain.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\..\Domain.Infrastructure.Repositories\Diplom.Infrastructure.Repositories.csproj" />
     <ProjectReference Include="..\Client\Diplom.Client.csproj" />
   </ItemGroup>
 

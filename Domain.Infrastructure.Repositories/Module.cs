@@ -1,12 +1,12 @@
 ﻿using Diplom.Domain.Repositories.Abstracts;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Domain.Infrastructure.Repositories
+namespace Diplom.Infrastructure.Repositories
 {
     /// <summary>
     /// Класс внедрения зависимостей.
     /// </summary>
-    public static class DependencyInjection
+    public static class Module
     {
         /// <summary>
         /// Сконфигурировать репозитории.

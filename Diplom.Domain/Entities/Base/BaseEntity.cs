@@ -1,4 +1,4 @@
-﻿namespace Diplom.Domain.Entities
+﻿namespace Diplom.Domain.Entities.Base
 {
     /// <summary>
     /// Базовая сущность.

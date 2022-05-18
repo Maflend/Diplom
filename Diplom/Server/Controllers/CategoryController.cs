@@ -14,6 +14,7 @@ namespace Diplom.Server.Controllers
     {
         private readonly IMediator _mediator;
 
+        private readonly IMediator mediator;
         public CategoryController(IMediator mediator)
         {
             _mediator = mediator;

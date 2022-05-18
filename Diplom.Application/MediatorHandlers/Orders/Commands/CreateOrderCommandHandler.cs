@@ -3,7 +3,7 @@ using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Orders.Commands;
 using Diplom.Domain.Entities;
 using Diplom.Domain.Repositories.Abstracts;
-using Diplom.Infrastructure.Specifications.UserSpecifications;
+using Diplom.Domain.Specifications.UserSpecifications;
 using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Orders.Commands

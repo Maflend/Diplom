@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Diplom.Application\Diplom.Application.csproj" />
+    <ProjectReference Include="..\..\Diplom.Client.Infrastructure\Diplom.Client.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Diplom.Mapping\Diplom.Mapping.csproj" />
   </ItemGroup>
 

@@ -21,7 +21,7 @@
     <ProjectReference Include="..\Diplom.Application.Abstracts\Diplom.Application.Abstracts.csproj" />
     <ProjectReference Include="..\Diplom.Domain.Repositories.Abstracts\Diplom.Domain.Repositories.Abstracts.csproj" />
     <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
-    <ProjectReference Include="..\Diplom.Infrastructure.Specifications\Diplom.Infrastructure.Specifications.csproj" />
+    <ProjectReference Include="..\Diplom.Infrastructure.Specifications\Diplom.Domain.Specifications.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,16 +5,16 @@ using Diplom.Client.Infrastructure.Managers.OrderManager;
 using Diplom.Client.Infrastructure.Managers.ProductManager;
 using Diplom.Client.Infrastructure.Services.Authentication;
 using Diplom.Client.Infrastructure.Services.Cart;
-using Diplom.Client.Infrastructure.Services.Http;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Diplom.Client.Infrastructure
 {
     /// <summary>
     /// Класс для внедрения зависимостей.
     /// </summary>
-    public static class DependencyInjection
+    public static class Module
     {
         /// <summary>
         /// Сконфигурировать инфраструктура клиета.
@@ -30,8 +30,6 @@ namespace Diplom.Client.Infrastructure
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ICartService, CartService>();
-
-         
         }
     }
 }

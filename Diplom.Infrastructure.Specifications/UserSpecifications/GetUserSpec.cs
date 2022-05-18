@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using Diplom.Domain.Entities;
 
-namespace Diplom.Infrastructure.Specifications.UserSpecifications
+namespace Diplom.Domain.Specifications.UserSpecifications
 {
     /// <summary>
     /// Спецификация пользователя.

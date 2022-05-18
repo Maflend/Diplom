@@ -8,14 +8,14 @@ namespace Diplom.Persistence
     /// <summary>
     /// Класс внедрения зависимостей уровня Persistence.
     /// </summary>
-    public static class DependencyInjection
+    public static class Module
     {
         /// <summary>
         /// Конфигурирование контекста.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
-        public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DiplomContext>(options =>
                 options.UseSqlServer(

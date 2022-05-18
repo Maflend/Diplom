@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using Diplom.Domain.Entities;
 
-namespace Diplom.Infrastructure.Specifications.ProductSpecifications
+namespace Diplom.Domain.Specifications.ProductSpecifications
 {
     /// <summary>
     /// Спецификация продуктов.

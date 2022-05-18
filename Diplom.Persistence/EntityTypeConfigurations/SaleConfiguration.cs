@@ -15,7 +15,6 @@ namespace Diplom.Persistence.EntityTypeConfigurations
             builder.HasIndex(e => e.Id).IsUnique();
             builder.Property(e => e.Quantity).IsRequired();
 
-
             builder.HasOne(e => e.Product);
             builder.HasOne(e => e.Order).WithMany(o => o.Sales);
         }

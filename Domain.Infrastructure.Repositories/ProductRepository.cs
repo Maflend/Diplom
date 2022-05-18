@@ -1,9 +1,9 @@
 ﻿using Diplom.Domain.Entities;
 using Diplom.Domain.Repositories.Abstracts;
 using Diplom.Persistence.Contexts;
-using Domain.Infrastructure.Repositories.GenericRepository;
+using Diplom.Infrastructure.Repositories.GenericRepository;
 
-namespace Domain.Infrastructure.Repositories
+namespace Diplom.Infrastructure.Repositories
 {
     /// <summary>
     /// Репозиторий продукта.
