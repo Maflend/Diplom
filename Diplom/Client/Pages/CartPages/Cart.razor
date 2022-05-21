@@ -1,11 +1,5 @@
 ﻿@page "/cart"
-@using AutoMapper
-@using Diplom.API.Dto.Dtos
-@using Diplom.Client.Infrastructure.Managers.OrderManager
-@using Diplom.Client.Infrastructure.Managers.ProductManager
-@using Diplom.Client.Infrastructure.Services.Cart
 @using Diplom.Client.Pages.OrderPages
-@using Diplom.Client.Shared.Cart
 
 @inject IOrderManager OrderManager
 @inject ICartService CartService
@@ -38,9 +32,9 @@
 
 
 @code {
-    public List<CartDto> CartItems { get; set; } = new();
-
     [CascadingParameter] public IModalService Modal { get; set; }
+
+    public List<CartDto> CartItems { get; set; } = new();
 
     protected async override Task OnInitializedAsync()
     {
@@ -48,14 +42,11 @@
 
     }
 
-
     private async Task CreateOrderAsync()
     {
-        
         var parameters = new ModalParameters();
         parameters.Add(nameof(CartItems), CartItems);
         var orderModal = Modal.Show<OrderModal>("Детали заказа", parameters);
-
         var result = await orderModal.Result;
 
         if (!result.Cancelled || result.Cancelled)

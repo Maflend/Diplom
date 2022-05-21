@@ -39,10 +39,15 @@ namespace Diplom.Server.Controllers
         /// </summary>
         /// <param name="id">Идентификатор.</param>
         /// <returns><see cref="ProductResponseDto"/>.</returns>
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<ProductResponseDto>> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetProductQuery() { Id = id });
+            var result = await _mediator.Send(
+                new GetProductQuery() 
+                { 
+                    Id = id
+                });
 
             return Ok(result);
         }
@@ -52,6 +57,7 @@ namespace Diplom.Server.Controllers
         /// </summary>
         /// <param name="categoryId">Идентификатор категории.</param>
         /// <returns>List<<see cref="ProductResponseDto"/>>.</returns>
+        [Authorize]
         [HttpGet("category")]
         public async Task<ActionResult<List<ProductResponseDto>>> GetAllByCategoryId(Guid categoryId)
         {

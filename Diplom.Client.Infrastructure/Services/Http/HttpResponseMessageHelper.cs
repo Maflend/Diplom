@@ -6,11 +6,6 @@ namespace Diplom.Client.Infrastructure.Services.Http
 {
     public class HttpResponseMessageHelper<T>
     {
-        public HttpResponseMessageHelper()
-        {
-
-        }
-
         public async Task<T> GetFromHttpResponseMessageAsync(HttpResponseMessage httpResponse)
         {
             if (!httpResponse.IsSuccessStatusCode)

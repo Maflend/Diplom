@@ -1,18 +1,16 @@
-﻿
-
-<a href="/ProductDetails/@Product.Id">
+﻿<a href="/ProductDetails/@Product?.Id">
     <div class="card">
 
         <div class="card-img-top">
-            <img  src="@Product.ImgUrl">
+            <img  src="@Product?.ImgUrl">
         </div>
 
         <div class="card-body">
             <h6 class="card-title mb-3">
-                @Product.Name
+                @Product?.Name
             </h6>
             <p class="card-text">
-                <b>@Product.Price₽</b>
+                <b>@Product?.Price₽</b>
             </p>
         </div>
 
@@ -20,7 +18,6 @@
 </a>
 
 @code {
-
     [Parameter]
     public ProductResponseDto Product { get; set; }
 }

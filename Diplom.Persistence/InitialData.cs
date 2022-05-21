@@ -34,7 +34,7 @@ namespace Diplom.Persistence
                 },
                 new Category()
                 {
-                    Id = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
+                    Id = new Guid("efe23fe7-21f0-43c8-924b-16eb4736f88a"),
                     Name = "Наушники"
                 }
                 );

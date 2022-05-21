@@ -1,14 +1,5 @@
-﻿
-@using Diplom.API.Dto.Responses
-@using Diplom.Client.Infrastructure.Managers.OrderManager
-@using Diplom.Client.Infrastructure.Managers.ProductManager
-@using Diplom.Client.Shared.Product
-
-
-@inject IProductManager ProductManager
+﻿@inject IProductManager ProductManager
 @inject IOrderManager OrderManager
-
-
 
 <div style="display:flex; flex-flow:row wrap;">
     @foreach (var product in Products)
@@ -20,32 +11,26 @@
 </div>
 
 
-
-
 @code {
-    public List<ProductResponseDto> Products { get; set; } = new();
-
     [Parameter]
     public Guid CategoryId { get; set; }
 
-    [CascadingParameter]
-    public Error Error { get; set; }
+    private List<ProductResponseDto> Products { get; set; } = new();
 
     protected async override Task OnInitializedAsync()
     {
         Products = await ProductManager.GetAll();
     }
+
     protected async override Task OnParametersSetAsync()
     {
-            if(CategoryId != Guid.Empty)
-            {
-                Products = await ProductManager.GetByCategoryId(CategoryId);
-            }
-            else
-            {
-                Products = await ProductManager.GetAll();
-            }
-        
-
+        if (CategoryId != Guid.Empty)
+        {
+            Products = await ProductManager.GetByCategoryId(CategoryId);
+        }
+        else
+        {
+            Products = await ProductManager.GetAll();
+        }
     }
 }

@@ -1,10 +1,5 @@
 ﻿using Diplom.API.Dto.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diplom.Client.Infrastructure.Managers.CategoryManager
 {
@@ -21,11 +16,6 @@ namespace Diplom.Client.Infrastructure.Managers.CategoryManager
             var response = await _httpClient.GetFromJsonAsync<List<CategoryResponseDto>>(Routes.CategoryEndpoints.GetAll);
 
             return response;
-        }
-
-        public Task<CategoryResponseDto> GetById()
-        {
-            throw new NotImplementedException();
         }
     }
 }

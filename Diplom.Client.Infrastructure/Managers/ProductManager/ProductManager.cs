@@ -34,26 +34,32 @@ namespace Diplom.Client.Infrastructure.Managers.ProductManager
 
         public async Task<List<ProductResponseDto>> GetByCategoryId(Guid categoryid)
         {
+            var http = _httpClientFactory.CreateClient("ApiClient");
             var query = new Dictionary<string, string>()
             {
                 ["categoryId"] = $"{categoryid}"
             };
 
             var uri = QueryHelpers.AddQueryString(Routes.ProductEndpoints.GetByCategoryId, query);
-            var response = await _httpClient.GetFromJsonAsync<List<ProductResponseDto>>(uri);
+            var httpResponse = await http.GetAsync(uri);
+            var httpResponseMessageHelper = new HttpResponseMessageHelper<List<ProductResponseDto>>();
+            var response = await httpResponseMessageHelper.GetFromHttpResponseMessageAsync(httpResponse);
 
             return response;
         }
 
         public async Task<ProductResponseDto> GetById(Guid id)
         {
+            var http = _httpClientFactory.CreateClient("ApiClient");
             var query = new Dictionary<string, string>()
             {
                 ["Id"] = $"{id}"
             };
 
             var uri = QueryHelpers.AddQueryString(Routes.ProductEndpoints.GetById, query);
-            var response = await _httpClient.GetFromJsonAsync<ProductResponseDto>(uri);
+            var httpResponse = await http.GetAsync(uri);
+            var httpResponseMessageHelper = new HttpResponseMessageHelper<ProductResponseDto>();
+            var response = await httpResponseMessageHelper.GetFromHttpResponseMessageAsync(httpResponse);
 
             return response;
         }

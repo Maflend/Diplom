@@ -20,7 +20,6 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddClientInfrastructure();
 builder.Services.AddBlazoredToast();
 builder.Services.AddBlazoredModal();
-builder.Services.AddMudServices();
 builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 
 builder.Services.AddScoped<AuthenticationHeaderHandle>();

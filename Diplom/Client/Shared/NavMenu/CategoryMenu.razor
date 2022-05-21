@@ -1,44 +1,48 @@
-﻿@using Diplom.Client.Infrastructure.Managers.CategoryManager
+﻿
 
 @inject ICategoryManager CategoryManager
 @inject NavigationManager NavigationManager
 
 <div class="container">
     <div class="header">
-         <a href="/"><h5>Категории</h5></a>
+        <a href="/"><h5>Категории</h5></a>
     </div>
-   
+
     <div class="link-container">
         @foreach (var category in Categories)
         {
-           @*  <a href="category/@category.Id ">@category?.Name</a>*@
-            <NavLink id="nav-category" class="nav-category" href="@{href+category.Id}"  Match="NavLinkMatch.All">
-                    @category?.Name
-                </NavLink>
+            <NavLink id="nav-category" class="nav-category" href="@{
+            href+category.Id
+}" Match="NavLinkMatch.All">
+                @category?.Name
+            </NavLink>
         }
     </div>
 </div>
 
 <style>
     .nav-category {
-    text-decoration: none !important;
-    color: black !important;
-}
-.nav-category:hover {
-    background-color: #333 !important;
-    color: white !important;
-}
-.link-container .nav-category {
-    border: none !important;
-    border-radius: 10px !important;
-    margin-top: 5px !important;
-    padding: 5px !important;
-    text-align: center !important;
-}
-.active {
-    background-color: #333 !important;
-    color: white !important;
-}
+        text-decoration: none !important;
+        color: black !important;
+    }
+
+        .nav-category:hover {
+            background-color: #333 !important;
+            color: white !important;
+        }
+
+    .link-container .nav-category {
+        border: none !important;
+        border-radius: 10px !important;
+        margin-top: 5px !important;
+        padding: 5px !important;
+        text-align: center !important;
+    }
+
+    .active {
+        background-color: #333 !important;
+        color: white !important;
+    }
 </style>
 
 @code {
@@ -54,5 +58,5 @@
     {
         NavigationManager.NavigateTo($"category/{id}");
     }
-   
+
 }
