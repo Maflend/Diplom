@@ -1,0 +1,11 @@
+﻿.contaier {
+    background-color: yellow;
+    border: 2px dashed black;
+    white-space: pre;
+    font-family: consolas, monospace;
+}
+.exception-message {
+    background-color: rgba(255,255,255,0.3);
+    margin: 0.5rem;
+    padding: 0.5rem;
+}

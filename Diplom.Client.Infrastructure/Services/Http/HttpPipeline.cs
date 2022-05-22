@@ -3,6 +3,9 @@ using System.Net;
 
 namespace Diplom.Client.Infrastructure.Services.Http
 {
+    /// <summary>
+    /// Обработчки Http-ответов для реагирования на Http-код.
+    /// </summary>
     public class HttpPipeline : DelegatingHandler
     {
         private readonly NavigationManager _navigationManager;

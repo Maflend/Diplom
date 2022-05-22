@@ -3,6 +3,9 @@ using System.Net.Http.Headers;
 
 namespace Diplom.Client.Infrastructure.Authentication
 {
+    /// <summary>
+    /// Обработчки Http-запросов для установления заголовка JWT.
+    /// </summary>
     public class AuthenticationHeaderHandle : DelegatingHandler
     {
         private readonly ITokenService _tokenService;
@@ -23,6 +26,5 @@ namespace Diplom.Client.Infrastructure.Authentication
           
             return await base.SendAsync(request, cancellationToken);
         }
-
     }
 }

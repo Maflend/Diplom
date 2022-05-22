@@ -1,27 +1,46 @@
-﻿using Blazored.Toast.Services;
-using Diplom.API.Dto.Responses;
-using Diplom.Client.Infrastructure.Erros;
-using Diplom.Client.Infrastructure.Services.Authentication;
+﻿using Diplom.API.Dto.Responses;
 using Diplom.Client.Infrastructure.Services.Http;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 
 namespace Diplom.Client.Infrastructure.Managers.ProductManager
 {
+    /// <summary>
+    /// Менеджер для продукта.
+    /// </summary>
     public class ProductManager : IProductManager
     {
-        private readonly HttpClient _httpClient;
-        private readonly ITokenService _tokenService;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ProductManager(HttpClient httpClient, ITokenService tokenService, IHttpClientFactory httpClientFactory)
+        public ProductManager(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
-            _tokenService = tokenService;
             _httpClientFactory = httpClientFactory;
         }
+
+        /// <summary>
+        /// Запрос получения продукта по идентификатору.
+        /// </summary>
+        /// <param name="id">Идентификатор продукта.</param>
+        /// <returns>Task <see cref="ProductResponseDto"/></returns>
+        public async Task<ProductResponseDto> GetById(Guid id)
+        {
+            var http = _httpClientFactory.CreateClient("ApiClient");
+            var query = new Dictionary<string, string>()
+            {
+                ["Id"] = $"{id}"
+            };
+
+            var uri = QueryHelpers.AddQueryString(Routes.ProductEndpoints.GetById, query);
+            var httpResponse = await http.GetAsync(uri);
+            var httpResponseMessageHelper = new HttpResponseMessageHelper<ProductResponseDto>();
+            var response = await httpResponseMessageHelper.GetFromHttpResponseMessageAsync(httpResponse);
+
+            return response;
+        }
+
+        /// <summary>
+        /// Запрос получения всех продуктов.
+        /// </summary>
+        /// <returns>Task List <see cref="ProductResponseDto"/></returns>
         public async Task<List<ProductResponseDto>> GetAll()
         {
             var http = _httpClientFactory.CreateClient("ApiClient");
@@ -32,6 +51,11 @@ namespace Diplom.Client.Infrastructure.Managers.ProductManager
             return response;
         }
 
+        /// <summary>
+        /// Запрос получения продуктов по идентификатору категории.
+        /// </summary>
+        /// <param name="categoryid">Идентификатор категории.</param>
+        /// <returns>Task List <see cref="ProductResponseDto"/></returns>
         public async Task<List<ProductResponseDto>> GetByCategoryId(Guid categoryid)
         {
             var http = _httpClientFactory.CreateClient("ApiClient");
@@ -48,20 +72,5 @@ namespace Diplom.Client.Infrastructure.Managers.ProductManager
             return response;
         }
 
-        public async Task<ProductResponseDto> GetById(Guid id)
-        {
-            var http = _httpClientFactory.CreateClient("ApiClient");
-            var query = new Dictionary<string, string>()
-            {
-                ["Id"] = $"{id}"
-            };
-
-            var uri = QueryHelpers.AddQueryString(Routes.ProductEndpoints.GetById, query);
-            var httpResponse = await http.GetAsync(uri);
-            var httpResponseMessageHelper = new HttpResponseMessageHelper<ProductResponseDto>();
-            var response = await httpResponseMessageHelper.GetFromHttpResponseMessageAsync(httpResponse);
-
-            return response;
-        }
     }
 }

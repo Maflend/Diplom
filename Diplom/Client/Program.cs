@@ -25,7 +25,10 @@ builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
 builder.Services.AddScoped<AuthenticationHeaderHandle>();
 builder.Services.AddScoped<HttpPipeline>();
 
-builder.Services.AddHttpClient("ApiClient", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+builder.Services.AddHttpClient(
+    "ApiClient",
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    )
     .AddHttpMessageHandler<AuthenticationHeaderHandle>()
     .AddHttpMessageHandler<HttpPipeline>();
 
