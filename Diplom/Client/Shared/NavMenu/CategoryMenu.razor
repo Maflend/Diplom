@@ -1,6 +1,4 @@
-﻿
-
-@inject ICategoryManager CategoryManager
+﻿@inject ICategoryManager CategoryManager
 @inject NavigationManager NavigationManager
 
 <div class="container">
@@ -11,9 +9,7 @@
     <div class="link-container">
         @foreach (var category in Categories)
         {
-            <NavLink id="nav-category" class="nav-category" href="@{
-            href+category.Id
-}" Match="NavLinkMatch.All">
+            <NavLink id="nav-category" class="nav-category" href="@{href+category.Id}" Match="NavLinkMatch.All">
                 @category?.Name
             </NavLink>
         }
@@ -53,10 +49,4 @@
     {
         Categories = await CategoryManager.GetAll();
     }
-
-    private void Link(Guid id)
-    {
-        NavigationManager.NavigateTo($"category/{id}");
-    }
-
 }

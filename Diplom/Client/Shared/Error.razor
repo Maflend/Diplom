@@ -1,39 +1,39 @@
 ﻿@inject IToastService ToastService
 @inherits ErrorBoundary
 
-    @if (CurrentException is null)
-    {
-        @ChildContent
-    }
-    else if (ErrorContent is not null)
-    {
-        @ErrorContent(CurrentException)
- 
-     }
-     else
-    {
-        <div class="container">
-            @foreach (var exception in receivedExceptions)
-            {
-                <div class="received-exception exception-message">
-                    @exception.Message
-                </div>
-            }
-        </div>
-    }
+@if (CurrentException is null)
+{
+    @ChildContent
+}
+else if (ErrorContent is not null)
+{
+    @ErrorContent(CurrentException)
 
-    @code {
-        List<Exception> receivedExceptions = new();
-
-        protected override Task OnErrorAsync(Exception exception)
+}
+else
+{
+    <div class="container">
+        @foreach (var exception in receivedExceptions)
         {
-            receivedExceptions.Add(exception);
-            return base.OnErrorAsync(exception);
+            <div class="received-exception exception-message">
+                @exception.Message
+            </div>
         }
+    </div>
+}
 
-        public new void Recover()
-        {
-            receivedExceptions.Clear();
-            base.Recover();
-        }
+@code {
+    List<Exception> receivedExceptions = new();
+
+    protected override Task OnErrorAsync(Exception exception)
+    {
+        receivedExceptions.Add(exception);
+        return base.OnErrorAsync(exception);
+    }
+
+    public new void Recover()
+    {
+        receivedExceptions.Clear();
+        base.Recover();
+    }
     }

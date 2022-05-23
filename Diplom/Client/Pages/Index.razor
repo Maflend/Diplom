@@ -1,21 +1,15 @@
 ﻿@page "/"
 @page "/category/{id:guid}"
-
-@using Diplom.Client.Pages.ProductPages
-@using Diplom.Client.Shared.NavMenu
 @attribute [Authorize]
 
-<div style="display:flex; flex-direction:row;">
-    <div style="float:left;">
+<div class="body">
+    <div class="category-menu">
         <CategoryMenu />
     </div>
-    
     <ProductList CategoryId=@Id></ProductList>
 </div>
-
 
 @code {
     [Parameter]
     public Guid Id { get; set; }
-    
 }

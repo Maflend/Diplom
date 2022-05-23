@@ -8,6 +8,9 @@ using MediatR;
 
 namespace Diplom.Application.MediatorHandlers.Orders.Commands
 {
+    /// <summary>
+    /// Обработчик создания заказа.
+    /// </summary>
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderResponseDto>
     {
         private readonly IMapper _mapper;
@@ -24,6 +27,13 @@ namespace Diplom.Application.MediatorHandlers.Orders.Commands
             _orderRepository = orderRepository;
             _userRepository = userRepository;
         }
+
+        /// <summary>
+        /// Метод обработки.
+        /// </summary>
+        /// <param name="request"><see cref="CreateOrderCommand"/></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<OrderResponseDto> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             var order = new Order()

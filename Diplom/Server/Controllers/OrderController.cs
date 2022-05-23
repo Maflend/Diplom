@@ -5,12 +5,14 @@ using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Orders.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Diplom.Server.Controllers
 {
+    /// <summary>
+    /// Контроллер для заказа.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -24,6 +26,11 @@ namespace Diplom.Server.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Создать заказ.
+        /// </summary>
+        /// <param name="sales">List<see cref="SaleRequestDto"/></param>
+        /// <returns></returns>
         [Authorize(Roles = "Client")]
         [HttpPost("create")]
         public async Task<ActionResult<OrderResponseDto>> CreateOrderAsync(List<SaleRequestDto> sales)

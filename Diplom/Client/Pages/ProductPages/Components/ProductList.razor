@@ -1,7 +1,7 @@
 ﻿@inject IProductManager ProductManager
 @inject IOrderManager OrderManager
 
-<div style="display:flex; flex-flow:row wrap;">
+<div class="product-list">
     @foreach (var product in Products)
     {
         <ProductCard Product=@product>

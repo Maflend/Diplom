@@ -7,6 +7,9 @@ using System.Net.Http.Json;
 
 namespace Diplom.Client.Infrastructure.Managers.OrderManager
 {
+    /// <summary>
+    /// Менеджер для контроллера заказов.
+    /// </summary>
     public class OrderManager : IOrderManager
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -17,6 +20,12 @@ namespace Diplom.Client.Infrastructure.Managers.OrderManager
             _httpClientFactory = httpClientFactory;
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// Запрос на создание заказа.
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
         public async Task<OrderResponseDto> CreateOrderAsync(List<CartDto> cart)
         {
 

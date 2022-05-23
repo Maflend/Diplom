@@ -1,0 +1,4 @@
+﻿.product-list {
+    display: flex;
+    flex-flow: row wrap;
+}
