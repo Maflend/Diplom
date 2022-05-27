@@ -8,16 +8,16 @@
         /// <summary>
         /// Конечная точка для получения всех продуктов.
         /// </summary>
-        public static string GetAll = "api/product/getAll";
+        public readonly static string GetAll = "api/product/getAll";
 
         /// <summary>
         /// Конечная точка для получения продукта по Id.
         /// </summary>
-        public static string GetById = "api/product";
+        public readonly static string GetById = "api/product";
 
         /// <summary>
         /// Конечная точка для получения продуктов по Id категории.
         /// </summary>
-        public static string GetByCategoryId = "api/product/category";
+        public readonly static string GetByCategoryId = "api/product/category";
     }
 }

@@ -8,6 +8,6 @@
         /// <summary>
         /// Конечная точка получения всех категорий.
         /// </summary>
-        public static string GetAll = "api/category/getAll";
+        public readonly static string GetAll = "api/category/getAll";
     }
 }

@@ -8,6 +8,6 @@
         /// <summary>
         /// Конечная точка создания заказа.
         /// </summary>
-        public static string CreateOrder = "api/order/create";
+        public readonly static string CreateOrder = "api/order/create";
     }
 }

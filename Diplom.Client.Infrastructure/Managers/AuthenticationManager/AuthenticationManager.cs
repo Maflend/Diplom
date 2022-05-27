@@ -7,6 +7,9 @@ using System.Net.Http.Json;
 
 namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
 {
+    /// <summary>
+    /// Менеджер для контроллера аутентификации.
+    /// </summary>
     public class AuthenticationManager : IAuthenticationManager
     {
         private readonly HttpClient _httpClient;
@@ -14,12 +17,22 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
         private readonly ITokenService _authenticationService;
 
         public string ErrorMessage { get; set; } = string.Empty;
-        public AuthenticationManager(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, ITokenService authenticationService)
+
+        public AuthenticationManager(
+            HttpClient httpClient,
+            AuthenticationStateProvider authenticationStateProvider,
+            ITokenService authenticationService
+            )
         {
             _httpClient = httpClient;
             _authenticationStateProvider = authenticationStateProvider;
             _authenticationService = authenticationService;
         }
+
+        /// <summary>
+        /// Запрос для аутентификации.
+        /// </summary>
+        /// <param name="request"><see cref="LoginRequestDto"/></param>
         public async Task<bool> Login(LoginRequestDto request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Login, request);
@@ -36,6 +49,10 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
             return true;
         }
 
+        /// <summary>
+        /// Запрос для регистрации.
+        /// </summary>
+        /// <param name="request"><see cref="RegisterRequestDto"/></param>
         public async Task<bool> Register(RegisterRequestDto request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.AuthenticationEndpoints.Register, request);
@@ -49,6 +66,9 @@ namespace Diplom.Client.Infrastructure.Managers.AuthenticationManager
             return true;
         }
 
+        /// <summary>
+        /// Выйти из пользователя.
+        /// </summary>
         public async Task Logout()
         {
             await _authenticationService.DeleteTokenAsync();

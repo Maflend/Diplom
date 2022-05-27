@@ -15,7 +15,9 @@ namespace Diplom.Client.Infrastructure.Authentication
             _tokenService = tokenService;
         }
 
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected async override Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
             var token = await _tokenService.GetTokenAsync();
 

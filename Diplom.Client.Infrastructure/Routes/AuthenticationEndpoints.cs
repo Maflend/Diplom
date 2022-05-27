@@ -8,11 +8,11 @@
         /// <summary>
         /// Конечная точка для регистрации.
         /// </summary>
-        public static string Register = "api/authentication/register";
+        public readonly static string Register = "api/authentication/register";
 
         /// <summary>
         /// Конечная точка для авторизации.
         /// </summary>
-        public static string Login = "api/authentication/login";
+        public readonly static string Login = "api/authentication/login";
     }
 }

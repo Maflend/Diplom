@@ -31,10 +31,7 @@ namespace Diplom.Server.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<RegisterResponseDto>> RegisterAsync(RegisterRequestDto request)
         {
-            RegisterCommand registerCommand = _mapper.Map<RegisterCommand>(request);
-            var response = await _mediator.Send(registerCommand);
-
-            return Ok(response);
+            return Ok(await _mediator.Send(_mapper.Map<RegisterCommand>(request)));
         }
 
         /// <summary>
@@ -45,10 +42,7 @@ namespace Diplom.Server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<LoginResponseDto>> LoginAsync(LoginRequestDto request)
         {
-            LoginCommand loginCommand = _mapper.Map<LoginCommand>(request);
-            var response = await _mediator.Send(loginCommand);
-
-            return Ok(response);
+            return Ok(await _mediator.Send(_mapper.Map<LoginCommand>(request)));
         }
     }
 }
