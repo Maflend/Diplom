@@ -10,13 +10,13 @@ namespace Diplom.API.Dto.Requests
         /// <summary>
         /// Имя пользователя.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="Имя пользователя должно быть заполнено.")]
         public string UserName { get; set; }
 
         /// <summary>
         /// Пароль.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "Пароль должен быть заполнен.")]
         public string Password { get; set; }
     }
 }

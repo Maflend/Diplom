@@ -12,7 +12,6 @@ namespace Diplom.Mapping.Profiles
         public ProductProfile()
         {
             CreateMap<Product, ProductResponseDto>();
-            CreateMap<Product, ShortProductResponseDto>();
         }
     }
 }

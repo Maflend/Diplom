@@ -11,7 +11,6 @@ namespace Diplom.Mapping.Profiles
         public SaleProfile()
         {
             CreateMap<CreateSaleDto, Sale>();
-            CreateMap<Sale, SaleResponseDto>();
             CreateMap<SaleRequestDto, CreateSaleDto>();
         }
     }

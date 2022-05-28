@@ -1,5 +1,8 @@
 ﻿namespace Diplom.Client.Infrastructure.Erros
 {
+    /// <summary>
+    /// Exception для ответа сервера.
+    /// </summary>
     public class HttpResponseException : Exception
     {
         public HttpResponseException()
