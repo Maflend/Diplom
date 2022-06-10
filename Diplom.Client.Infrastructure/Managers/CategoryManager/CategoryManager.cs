@@ -1,5 +1,5 @@
 ﻿using Diplom.API.Dto.Responses;
-using System.Net.Http.Json;
+using Diplom.Client.Infrastructure.Services.Http;
 
 namespace Diplom.Client.Infrastructure.Managers.CategoryManager
 {
@@ -8,11 +8,11 @@ namespace Diplom.Client.Infrastructure.Managers.CategoryManager
     /// </summary>
     public class CategoryManager : ICategoryManager
     {
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public CategoryManager(HttpClient httpClient)
+        public CategoryManager(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
         }
 
         /// <summary>
@@ -21,7 +21,10 @@ namespace Diplom.Client.Infrastructure.Managers.CategoryManager
         /// <returns></returns>
         public async Task<List<CategoryResponseDto>> GetAll()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<CategoryResponseDto>>(Routes.CategoryEndpoints.GetAll);
+            var http = _httpClientFactory.CreateClient("ApiClient");
+            var httpResponse = await http.GetAsync(Routes.CategoryEndpoints.GetAll);
+            var httpResponseMessageHelper = new HttpResponseMessageHelper<List<CategoryResponseDto>>();
+            var response = await httpResponseMessageHelper.GetFromHttpResponseMessageAsync(httpResponse);
 
             return response;
         }

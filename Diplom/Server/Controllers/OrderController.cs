@@ -32,7 +32,7 @@ namespace Diplom.Server.Controllers
         /// </summary>
         /// <param name="sales">List<see cref="SaleRequestDto"/></param>
         /// <returns></returns>
-        [Authorize(Roles = "")]
+        [Authorize(Roles = nameof(RoleEnum.Client))]
         [HttpPost("create")]
         public async Task<ActionResult<OrderResponseDto>> CreateOrderAsync(List<SaleRequestDto> sales)
         {

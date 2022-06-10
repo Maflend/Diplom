@@ -28,7 +28,6 @@ namespace Diplom.Client.Infrastructure.Managers.OrderManager
         /// <returns></returns>
         public async Task<OrderResponseDto> CreateOrderAsync(List<CartDto> cart)
         {
-
             var http = _httpClientFactory.CreateClient("ApiClient");
             var httpResponse = await http.PostAsJsonAsync(Routes.OrderEndpoints.CreateOrder, _mapper.Map<List<SaleRequestDto>>(cart));
             var httpResponseMessageHelper = new HttpResponseMessageHelper<OrderResponseDto>();

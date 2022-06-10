@@ -1,6 +1,8 @@
 ﻿using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Categories.Queries;
+using Diplom.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diplom.Server.Controllers
@@ -23,6 +25,7 @@ namespace Diplom.Server.Controllers
         /// Получить все категории.
         /// </summary>
         /// <returns>List<<see cref="CategoryResponseDto"/>></returns>
+        [Authorize(Roles = nameof(RoleEnum.Client))]
         [HttpGet("getAll")]
         public async Task<ActionResult<List<CategoryResponseDto>>> GetAll()
         {
