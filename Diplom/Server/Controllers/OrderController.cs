@@ -3,6 +3,7 @@ using Diplom.API.Dto.Dtos;
 using Diplom.API.Dto.Requests;
 using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Orders.Commands;
+using Diplom.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace Diplom.Server.Controllers
         /// </summary>
         /// <param name="sales">List<see cref="SaleRequestDto"/></param>
         /// <returns></returns>
-        [Authorize(Roles = "Client")]
+        [Authorize(Roles = "")]
         [HttpPost("create")]
         public async Task<ActionResult<OrderResponseDto>> CreateOrderAsync(List<SaleRequestDto> sales)
         {

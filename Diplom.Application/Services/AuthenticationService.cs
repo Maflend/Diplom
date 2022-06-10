@@ -34,7 +34,7 @@ namespace Diplom.Application.Services
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
             Claims = new ClaimsIdentity(claims);
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));

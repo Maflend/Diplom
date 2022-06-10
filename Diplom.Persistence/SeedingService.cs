@@ -1,10 +1,19 @@
-﻿using Diplom.Domain.Entities;
+﻿using Diplom.Application.Abstracts.IServices;
+using Diplom.Domain.Entities;
+using Diplom.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Diplom.Persistence
 {
-    public class InitialData
+    public class SeedingService : ISeedingService
     {
+        private readonly IUserService _userService;
+
+        public SeedingService(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         /// <summary>
         /// Заполнить БД начальными данными.
         /// </summary>
@@ -13,6 +22,36 @@ namespace Diplom.Persistence
         {
             InitialCategories(modelBuilder);
             InitialProducts(modelBuilder);
+            InitialUsers(modelBuilder);
+        }
+
+        /// <summary>
+        /// Данные для пользователей.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        public void InitialUsers(ModelBuilder modelBuilder)
+        {
+            _userService.CreatePasswordHash("Administrator", out byte[] passwordHash1, out byte[] passwordSalt1);
+            _userService.CreatePasswordHash("Client", out byte[] passwordHash2, out byte[] passwordSalt2);
+
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    UserName = "Admin",
+                    Age = 21,
+                    Role = RoleEnum.Administrator,
+                    PasswordHash = passwordHash1,
+                    PasswordSalt = passwordSalt1
+                },
+                new User()
+                {
+                    UserName = "Client",
+                    Age = 21,
+                    Role = RoleEnum.Client,
+                    PasswordHash = passwordHash2,
+                    PasswordSalt = passwordSalt2
+                }
+                );
         }
 
         /// <summary>
@@ -74,7 +113,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1433141_v01_b.jpg",
                     PurchasePrice = 3000,
                     Price = 5100,
-                    CategoryId = Guid.Parse("9b44ad54-817c-47c2-8344-729915670c73") 
+                    CategoryId = Guid.Parse("9b44ad54-817c-47c2-8344-729915670c73")
                 },
                 // Телевизоры
                 new Product()
@@ -84,7 +123,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1092279_v01_b.jpg",
                     PurchasePrice = 36000,
                     Price = 57990,
-                    CategoryId = Guid.Parse("e90e97a3-cf8c-496e-8db4-55049d15fe99") 
+                    CategoryId = Guid.Parse("e90e97a3-cf8c-496e-8db4-55049d15fe99")
                 },
                 new Product()
                 {
@@ -93,7 +132,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1529485_v01_b.jpg",
                     PurchasePrice = 57990,
                     Price = 35000,
-                    CategoryId = Guid.Parse("e90e97a3-cf8c-496e-8db4-55049d15fe99") 
+                    CategoryId = Guid.Parse("e90e97a3-cf8c-496e-8db4-55049d15fe99")
                 },
                 new Product()
                 {
@@ -102,7 +141,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1140679_v01_b.jpg",
                     PurchasePrice = 20000,
                     Price = 34990,
-                    CategoryId = Guid.Parse("e90e97a3-cf8c-496e-8db4-55049d15fe99") 
+                    CategoryId = Guid.Parse("e90e97a3-cf8c-496e-8db4-55049d15fe99")
                 },
 
                 // Наушники
@@ -113,7 +152,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1048584_v01_b.jpg",
                     PurchasePrice = 8000,
                     Price = 25490,
-                    CategoryId = Guid.Parse("67f36106-149d-4e4d-b9e1-f365f498a7a6") 
+                    CategoryId = Guid.Parse("efe23fe7-21f0-43c8-924b-16eb4736f88a")
                 },
                 new Product()
                 {
@@ -122,7 +161,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/490813_v01_b.jpg",
                     PurchasePrice = 1500,
                     Price = 3990,
-                    CategoryId = Guid.Parse("67f36106-149d-4e4d-b9e1-f365f498a7a6") 
+                    CategoryId = Guid.Parse("efe23fe7-21f0-43c8-924b-16eb4736f88a")
                 },
                 new Product()
                 {
@@ -131,7 +170,7 @@ namespace Diplom.Persistence
                     ImgUrl = "https://items.s1.citilink.ru/1141533_v01_b.jpg",
                     PurchasePrice = 11000,
                     Price = 16990,
-                    CategoryId = Guid.Parse("67f36106-149d-4e4d-b9e1-f365f498a7a6") 
+                    CategoryId = Guid.Parse("efe23fe7-21f0-43c8-924b-16eb4736f88a")
                 }
                 );
         }

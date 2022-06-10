@@ -1,4 +1,5 @@
 ﻿using Diplom.Domain.Entities.Base;
+using Diplom.Domain.Enums;
 
 namespace Diplom.Domain.Entities
 {
@@ -15,7 +16,7 @@ namespace Diplom.Domain.Entities
         /// <summary>
         /// Роль.
         /// </summary>
-        public string Role { get; set; }
+        public RoleEnum Role { get; set; }
 
         /// <summary>
         /// Возраст.

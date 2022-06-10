@@ -3,8 +3,8 @@ using System;
 using Diplom.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,20 +17,20 @@ namespace Diplom.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("Diplom.Domain.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -55,7 +55,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
+                            Id = new Guid("efe23fe7-21f0-43c8-924b-16eb4736f88a"),
                             Name = "Наушники"
                         });
                 });
@@ -64,13 +64,13 @@ namespace Diplom.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -86,28 +86,28 @@ namespace Diplom.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<decimal>("PurchasePrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -121,7 +121,7 @@ namespace Diplom.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b583d4f5-bd41-4296-9e86-08495dab7dc0"),
+                            Id = new Guid("4cabc0d8-5e81-4f2b-ac10-e13bbcd9061c"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Смартфон Apple iPhone 11 128GB с новой комплектацией черный. ID: 5863730. Артикул: 836847. Диагональ(дюйм): 6.1. Разрешение(пикс): 1792x828. Встроенная память(Гб): 128. Фотокамера(Мп): 12 + 12(двойная). Оптический зум: x2",
                             ImgUrl = "https://items.s1.citilink.ru/1429412_v01_b.jpg",
@@ -131,7 +131,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6c4f9271-d9d4-4ffa-ad67-81f854fe65c7"),
+                            Id = new Guid("deec1ff7-eb51-4885-ab7a-860b4d34489e"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Смартфон Samsung Galaxy S21 FE 128 ГБ белый. Разрешение экрана пикс: 2340 x 1080. Встроенная память, ГБ:128.",
                             ImgUrl = "https://items.s1.citilink.ru/1659651_v01_b.jpg",
@@ -141,7 +141,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a476254b-46ac-41f8-b1b6-5ebd4e265b0d"),
+                            Id = new Guid("3e99ba2c-e14a-4abf-a0db-5bdd50472c06"),
                             CategoryId = new Guid("9b44ad54-817c-47c2-8344-729915670c73"),
                             Description = "Операционная система: Android Q Go. Дисплей: 6TFT. Разрешение дисплея: 960x480. Процессор: Spreadtrum SC7731E,1300МГц,4 - х ядерный. Объем оперативной памяти: 1 ГБ. Объем встроенной памяти: 32 ГБ.",
                             ImgUrl = "https://items.s1.citilink.ru/1433141_v01_b.jpg",
@@ -151,7 +151,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1ede832d-9992-45e4-ab46-3feae3330a6a"),
+                            Id = new Guid("5d0e2a44-7649-4c1f-83d2-da59c265918f"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
                             Description = "LED-телевизор LG 49UK6200PLA с экраном диагональю 49 дюймов органично впишется в интерьер столовой, спальни или гостиной. Поддержка Ultra HD 4K с разрешением 3840х2160 делает картинку максимально реалистичной и детальной.",
                             ImgUrl = "https://items.s1.citilink.ru/1092279_v01_b.jpg",
@@ -161,7 +161,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("22845414-8f7a-4487-9403-f7efe135f0fd"),
+                            Id = new Guid("45637122-7766-4b6d-91c4-b0dadd227e2c"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
                             Description = "Цвет, в котором выполнен телевизор SAMSUNG UE50AU8000UXRU, - универсальный черный. В этом цвете выполнены рамка и подставка, поэтому устройство отличается нейтральным внешним видом и способно вписаться в любой интерьер. Оно выпущено в 2021-м году и обладает подсветкой Direct LED. Диагональ экрана равна 50 дюймам, что в пересчете равно целым 125 см.",
                             ImgUrl = "https://items.s1.citilink.ru/1529485_v01_b.jpg",
@@ -171,7 +171,7 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4850b48f-51f7-4244-9bd7-aaab9830639a"),
+                            Id = new Guid("9c364cbd-589b-40db-b8e8-801d3be55620"),
                             CategoryId = new Guid("e90e97a3-cf8c-496e-8db4-55049d15fe99"),
                             Description = "Телевизор LED LG 32 оснащен четырехъядерным процессором, работающим быстро и бесшумно.С его помощью обеспечиваются более динамичная цветопередача и контрастность, обработка изображений, автоматическая коррекция цвета.Изображение становится более насыщенным и естественным.Картинки с низким разрешением масштабируются и восстанавливаются.",
                             ImgUrl = "https://items.s1.citilink.ru/1140679_v01_b.jpg",
@@ -181,8 +181,8 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e1752711-8d09-4e73-952d-518af4bb80ab"),
-                            CategoryId = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
+                            Id = new Guid("ea106943-7733-453b-b208-c7428d33ca16"),
+                            CategoryId = new Guid("efe23fe7-21f0-43c8-924b-16eb4736f88a"),
                             Description = "Профессиональные наушники с широким диапазоном воспроизводимых частот – AUDIO-TECHNICA ATH-M50X. Данная модель отличается строгим технологичным дизайном. Длина кабеля 3 м позволяет с комфортом расположиться в студии или за диджейским пультом. Провод можно отсоединять и при необходимости менять на другой.",
                             ImgUrl = "https://items.s1.citilink.ru/1048584_v01_b.jpg",
                             Name = "Audio-Technica ATH-M50X",
@@ -191,8 +191,8 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d397d96e-8564-4e06-9680-354485b595ff"),
-                            CategoryId = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
+                            Id = new Guid("f0ea7390-a574-43db-9d9b-54c27198e0a8"),
+                            CategoryId = new Guid("efe23fe7-21f0-43c8-924b-16eb4736f88a"),
                             Description = "Наушники KOSS Porta Pro Classic разработаны еще в восьмидесятых, но они до сих пор не сдают свои позиции и остаются популярными среди меломанов. Все благодаря высокому качеству звука. Небольшие динамики выдают насыщенные басы, от которых дрожат внутренности.",
                             ImgUrl = "https://items.s1.citilink.ru/490813_v01_b.jpg",
                             Name = "Koss Porta Pro Classic",
@@ -201,8 +201,8 @@ namespace Diplom.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("aec518f2-a013-44ad-b2c0-62365a800dfa"),
-                            CategoryId = new Guid("67f36106-149d-4e4d-b9e1-f365f498a7a6"),
+                            Id = new Guid("8953513d-638e-41d2-a0a5-8f93c4d8d409"),
+                            CategoryId = new Guid("efe23fe7-21f0-43c8-924b-16eb4736f88a"),
                             Description = "Audio-Tecnica ATH-MSR7B – проводные наушники, совместимые с большинством проигрывающих устройств, в том числе самыми современными. Данная модель обладает малым весом, а амбушюры и оголовье из пенного наполнителя не создают давления на голову и уши, благодаря чему наслаждаться любимыми мелодиями можно много часов подряд.",
                             ImgUrl = "https://items.s1.citilink.ru/1141533_v01_b.jpg",
                             Name = "Audio-Technica ATH-MSR7BBK",
@@ -215,16 +215,16 @@ namespace Diplom.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -242,26 +242,26 @@ namespace Diplom.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Age")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("bytea");
 
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -269,6 +269,26 @@ namespace Diplom.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2d89eae5-1de9-4c83-bd86-9b332eb61e24"),
+                            Age = 21,
+                            PasswordHash = new byte[] { 169, 102, 245, 81, 29, 23, 111, 245, 187, 222, 16, 230, 186, 92, 118, 33, 26, 201, 113, 124, 196, 186, 192, 114, 254, 41, 152, 159, 87, 180, 238, 83, 166, 77, 16, 118, 28, 130, 171, 166, 122, 240, 137, 218, 184, 156, 102, 193, 46, 26, 244, 135, 49, 130, 82, 193, 32, 112, 76, 132, 179, 168, 156, 5 },
+                            PasswordSalt = new byte[] { 5, 14, 180, 192, 178, 190, 142, 252, 10, 221, 106, 192, 56, 9, 1, 156, 63, 155, 206, 229, 32, 230, 161, 148, 10, 219, 120, 190, 198, 55, 199, 33, 240, 90, 132, 114, 230, 142, 143, 209, 83, 55, 77, 162, 181, 53, 149, 99, 147, 67, 144, 142, 168, 34, 17, 189, 154, 21, 114, 10, 155, 38, 128, 252, 189, 179, 245, 165, 123, 33, 205, 40, 224, 92, 41, 52, 169, 23, 254, 171, 123, 104, 236, 148, 181, 230, 137, 114, 224, 27, 186, 19, 40, 45, 135, 123, 14, 161, 107, 15, 113, 88, 119, 150, 15, 148, 159, 119, 56, 209, 136, 97, 28, 43, 45, 89, 5, 26, 67, 129, 116, 209, 37, 251, 254, 221, 163, 32 },
+                            Role = "Administrator",
+                            UserName = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("bdb4bdf9-685b-4d93-9542-b3d0e8983803"),
+                            Age = 21,
+                            PasswordHash = new byte[] { 134, 28, 250, 79, 30, 43, 101, 89, 15, 78, 181, 69, 205, 34, 207, 240, 186, 135, 201, 75, 108, 13, 22, 231, 194, 111, 126, 47, 112, 78, 88, 35, 52, 231, 239, 83, 190, 134, 82, 207, 82, 27, 243, 136, 45, 25, 108, 145, 26, 91, 55, 186, 150, 148, 217, 53, 52, 178, 246, 188, 255, 245, 142, 230 },
+                            PasswordSalt = new byte[] { 147, 248, 234, 111, 105, 96, 137, 214, 117, 197, 213, 244, 243, 212, 48, 206, 39, 85, 27, 242, 35, 167, 128, 232, 65, 201, 96, 168, 193, 28, 195, 163, 233, 88, 240, 107, 163, 54, 138, 161, 148, 110, 231, 89, 39, 189, 151, 159, 223, 88, 126, 87, 114, 173, 204, 212, 73, 162, 174, 146, 239, 237, 21, 188, 136, 67, 210, 181, 162, 217, 71, 136, 84, 126, 132, 255, 167, 213, 231, 119, 140, 36, 251, 240, 174, 227, 65, 193, 136, 77, 69, 24, 93, 136, 25, 250, 81, 87, 126, 167, 132, 74, 57, 224, 168, 64, 172, 225, 155, 189, 57, 89, 53, 176, 148, 133, 122, 56, 216, 73, 114, 202, 87, 65, 50, 18, 41, 133 },
+                            Role = "Client",
+                            UserName = "Client"
+                        });
                 });
 
             modelBuilder.Entity("Diplom.Domain.Entities.Order", b =>

@@ -17,10 +17,17 @@ namespace Diplom.Persistence
         /// <param name="configuration"></param>
         public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
         {
+            //services.AddDbContext<DiplomContext>(options =>
+            //    options.UseSqlServer(
+            //        configuration.GetConnectionString("SqlServerConnection"),
+            //        b => b.MigrationsAssembly(typeof(DiplomContext).Assembly.FullName)));
+
             services.AddDbContext<DiplomContext>(options =>
-                options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(DiplomContext).Assembly.FullName)));
+               options.UseNpgsql(
+                   configuration.GetConnectionString("PostgreConnection"),
+                   b => b.MigrationsAssembly(typeof(DiplomContext).Assembly.FullName)));
+
+            services.AddScoped<ISeedingService, SeedingService>();
         }
     }
 }

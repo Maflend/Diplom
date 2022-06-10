@@ -2,6 +2,7 @@
 using Diplom.Application.Abstracts.Mediator.Authentication.Commands;
 using Diplom.Application.Exeptions;
 using Diplom.Domain.Entities;
+using Diplom.Domain.Enums;
 using Diplom.Domain.Repositories.Abstracts;
 using MediatR;
 
@@ -38,7 +39,7 @@ namespace Diplom.Application.MediatorHandlers.Authentication.Commands
                 _userService.CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 User user = new User()
                 {
-                    Role = "Client",
+                    Role = RoleEnum.Client,
                     Age = request.Age,
                     UserName = request.UserName,
                     PasswordHash = passwordHash,

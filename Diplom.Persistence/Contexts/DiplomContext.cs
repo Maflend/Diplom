@@ -9,8 +9,14 @@ namespace Diplom.Persistence.Contexts
     /// </summary>
     public class DiplomContext : DbContext
     {
+        private readonly ISeedingService _seedingService;
+
         public DiplomContext() { }
         public DiplomContext(DbContextOptions options) : base(options) { }
+        public DiplomContext(ISeedingService seedingService,DbContextOptions options) : base(options)
+        {
+            _seedingService = seedingService;
+        }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Sale> Sales { get; set; }
@@ -25,8 +31,7 @@ namespace Diplom.Persistence.Contexts
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new SaleConfiguration());
 
-            InitialData data = new InitialData();
-            data.Initialized(modelBuilder);
+            _seedingService.Initialized(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { }
