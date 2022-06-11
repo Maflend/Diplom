@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="MediatorHandlers\Authentication\Queries\" />
     <Folder Include="MediatorHandlers\Categories\Commands\" />
-    <Folder Include="MediatorHandlers\Orders\Queries\" />
     <Folder Include="MediatorHandlers\Products\Commands\" />
   </ItemGroup>
 

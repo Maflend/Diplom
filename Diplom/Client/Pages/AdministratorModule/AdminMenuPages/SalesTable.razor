@@ -1,0 +1,21 @@
+﻿@inject IOrderManager OrderManager
+
+<RadzenDataGrid Data="@Orders" TItem="OrderWithSalesDto" PageSize="5" AllowPaging="true" AllowFiltering="true"
+    AllowColumnResize="true" AllowSorting="true">
+    <Columns>
+        <RadzenDataGridColumn TItem="OrderWithSalesDto" Property="Id" Title="Номер заказа"/>
+        <RadzenDataGridColumn TItem="OrderWithSalesDto" Property="CreateDate" Title="Дата">
+            <Template Context="order">@order.CreateDate.ToShortDateString()</Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="OrderWithSalesDto" Property="SalesCount" Title="Кол-во продаж"/>
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    public List<OrderWithSalesDto> Orders = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Orders = await OrderManager.GetOrdersAsync();
+    }
+}

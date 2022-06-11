@@ -12,6 +12,7 @@ namespace Diplom.Mapping.Profiles
         public OrderProfile()
         {
             CreateMap<Order, OrderResponseDto>();
+            CreateMap<Order, OrderWithSalesDto>().ForMember(dest => dest.SalesCount, opt => opt.MapFrom(src => src.Sales.Select(s=>s.Quantity).Sum()));
         }
     }
 }

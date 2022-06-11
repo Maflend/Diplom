@@ -6,5 +6,6 @@ namespace Diplom.Client.Infrastructure.Managers.OrderManager
     public interface IOrderManager
     {
         Task<OrderResponseDto> CreateOrderAsync(List<CartDto> Cart);
+        Task<List<OrderWithSalesDto>> GetOrdersAsync();
     }
 }

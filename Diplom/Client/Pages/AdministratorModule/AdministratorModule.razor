@@ -1,4 +1,6 @@
-﻿@inject NavigationManager NavigationManager
+﻿@attribute [Authorize(Roles = nameof(RoleEnum.Administrator))]
+
+@inject NavigationManager NavigationManager
 
 <div class="module">
     <div class="admin-menu-navigation">
@@ -12,7 +14,7 @@
                 <SalesChart></SalesChart>
                 break;
             case AdminMenuEnum.SaleTable:
-                <p>SaleTable</p>
+                <SalesTable></SalesTable>
                 break;
         }
     </div>

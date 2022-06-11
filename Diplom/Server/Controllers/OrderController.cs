@@ -3,6 +3,7 @@ using Diplom.API.Dto.Dtos;
 using Diplom.API.Dto.Requests;
 using Diplom.API.Dto.Responses;
 using Diplom.Application.Abstracts.Mediator.Orders.Commands;
+using Diplom.Application.Abstracts.Mediator.Orders.Queries;
 using Diplom.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -28,12 +29,21 @@ namespace Diplom.Server.Controllers
         }
 
         /// <summary>
+        /// Получить заказы.
+        /// </summary>
+        [HttpGet]
+        [Authorize(Roles = nameof(RoleEnum.Administrator))]
+        public async Task<ActionResult<List<OrderWithSalesDto>>> GetOrders()
+        {
+            return await _mediator.Send(new GetOrdersQuery());
+        }
+
+        /// <summary>
         /// Создать заказ.
         /// </summary>
         /// <param name="sales">List<see cref="SaleRequestDto"/></param>
-        /// <returns></returns>
-        [Authorize(Roles = nameof(RoleEnum.Client))]
         [HttpPost("create")]
+        [Authorize(Roles = nameof(RoleEnum.Client))]
         public async Task<ActionResult<OrderResponseDto>> CreateOrderAsync(List<SaleRequestDto> sales)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;

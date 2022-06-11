@@ -9,7 +9,7 @@ using Diplom.Mapping;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
-
+using Radzen;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -21,6 +21,11 @@ builder.Services.AddClientInfrastructure();
 builder.Services.AddBlazoredToast();
 builder.Services.AddBlazoredModal();
 builder.Services.AddAutoMapper(typeof(AutoMapperAssembly));
+
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<ContextMenuService>();
 
 builder.Services.AddScoped<AuthenticationHeaderHandle>();
 builder.Services.AddScoped<HttpPipeline>();

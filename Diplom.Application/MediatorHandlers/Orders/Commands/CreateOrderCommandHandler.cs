@@ -38,7 +38,7 @@ namespace Diplom.Application.MediatorHandlers.Orders.Commands
         {
             var order = new Order()
             {
-                CreateDate = DateTime.Now,
+                CreateDate = DateTime.UtcNow,
                 Sales = _mapper.Map<List<Sale>>(request.Sales),
                 User = await _userRepository.GetBySpecAsync(new GetUserSpec(request.UserName), cancellationToken)
             };

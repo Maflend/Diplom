@@ -1,8 +1,17 @@
-﻿@page "/saleschart"
-@inherits LayoutComponentBase
+﻿@inject IOrderManager OrderManager
 
-<h3>saleschart</h3>
+<RadzenChart>
+    <RadzenLineSeries Smooth="false" Data="@Orders" CategoryProperty="CreateDate" Title="График продаж" LineType="LineType.Dashed" ValueProperty="SalesCount">
+        <RadzenMarkers MarkerType="MarkerType.Square" />
+    </RadzenLineSeries>
+</RadzenChart>
 
 @code {
+    public List<OrderWithSalesDto> Orders = new();
 
+    protected override async Task OnInitializedAsync()
+    {
+        Orders = await OrderManager.GetOrdersAsync();
+        Orders = Orders.GroupBy(o => o.CreateDate).Select(s => new OrderWithSalesDto() { CreateDate = s.Key, SalesCount = s.Select(s=>s.SalesCount).Sum()}).ToList();
+    }
 }
