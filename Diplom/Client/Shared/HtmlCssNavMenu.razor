@@ -2,7 +2,7 @@
 @inject NavigationManager NavigationManager
 
 <ul>
-    <AuthorizeView>
+     <AuthorizeView>
         <Authorized>
             <li class="nav-item">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -14,14 +14,21 @@
                     <span class="oi oi-account-logout" aria-hidden="true"></span> Выйти
                 </NavLink>
             </li>
+        </Authorized>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Client">
+        <Authorized>
             <li class="nav-item" style="float:right">
                 <NavLink class="nav-link" href="/cart" Match="NavLinkMatch.All">
                     <span class="oi oi-cart" aria-hidden="true"></span> Корзина
                 </NavLink>
             </li>
-
         </Authorized>
-        <NotAuthorized>
+    </AuthorizeView>
+
+    <AuthorizeView>
+         <NotAuthorized>
             <li class="nav-item" style="float:right">
                 <NavLink class="nav-link" href="/login" Match="NavLinkMatch.All">
                     <span class="oi oi-people" aria-hidden="true"></span> Авторизироваться
@@ -34,7 +41,6 @@
             </li>
         </NotAuthorized>
     </AuthorizeView>
-
 </ul>
 
 <style>

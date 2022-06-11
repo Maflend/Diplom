@@ -1,15 +1,15 @@
 ﻿@page "/"
-@page "/category/{id:guid}"
 @attribute [Authorize]
 
-<div class="body">
-    <div class="category-menu">
-        <CategoryMenu />
-    </div>
-    <ProductList CategoryId=@Id></ProductList>
-</div>
+
+<AuthorizeView Roles="Client">
+    <ClientModule></ClientModule>
+</AuthorizeView>
+
+<AuthorizeView Roles="Administrator">
+    <AdministratorModule></AdministratorModule>
+</AuthorizeView>
 
 @code {
-    [Parameter]
-    public Guid Id { get; set; }
+    
 }

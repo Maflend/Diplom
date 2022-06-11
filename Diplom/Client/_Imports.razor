@@ -5,15 +5,25 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.JSInterop
+
 @using Diplom.Client
-@using Diplom.Client.Pages.ProductPages
-@using Diplom.Client.Pages.ProductPages.Components
-@using Diplom.Client.Pages.OrderPages
-@using Diplom.Client.Pages.OrderPages.Modals
-@using Diplom.Client.Pages.CartPages.Components
+
+@using Diplom.Client.Pages.ClientModule
+@using Diplom.Client.Pages.ClientModule.ProductPages
+@using Diplom.Client.Pages.ClientModule.ProductPages.Components
+@using Diplom.Client.Pages.ClientModule.OrderPages
+@using Diplom.Client.Pages.ClientModule.OrderPages.Modals
+@using Diplom.Client.Pages.ClientModule.CartPages.Components
+
+@using Diplom.Client.Pages.AdministratorModule
+@using Diplom.Client.Pages.AdministratorModule.AdminMenuPages
+
 @using Diplom.Client.Shared
 @using Diplom.Client.Shared.NavMenu
+
 @using Diplom.Client.Infrastructure
 @using Diplom.Client.Infrastructure.Authentication
 @using Diplom.Client.Infrastructure.Managers.AuthenticationManager
@@ -23,14 +33,16 @@
 @using Diplom.Client.Infrastructure.Erros
 @using Diplom.Client.Infrastructure.Services.Cart
 @using Diplom.Client.Infrastructure.Services.Authentication
+@using Diplom.Client.Infrastructure.Models.Enums
+
 @using Diplom.API.Dto.Requests
 @using Diplom.API.Dto.Responses
 @using Diplom.API.Dto.Dtos
-@using Microsoft.AspNetCore.Components.Authorization
+
 @using Blazored.Toast
 @using Blazored.Toast.Services
 @using Blazored.Toast.Configuration
 @using Blazored.Modal
 @using Blazored.Modal.Services
+
 @using MudBlazor
-@using Microsoft.AspNetCore.Authorization

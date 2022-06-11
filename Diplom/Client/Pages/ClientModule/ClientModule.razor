@@ -1,0 +1,15 @@
+﻿@page "/category/all"
+@page "/category/{id:guid}"
+@attribute [Authorize(Roles = nameof(RoleEnum.Client))]
+
+<div class="body">
+    <div class="category-menu">
+        <CategoryMenu />
+    </div>
+    <ProductList CategoryId=@Id></ProductList>
+</div>
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+}
