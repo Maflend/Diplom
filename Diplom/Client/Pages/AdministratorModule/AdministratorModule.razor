@@ -1,6 +1,24 @@
-﻿
-<AdminMenu></AdminMenu>
+﻿@inject NavigationManager NavigationManager
+
+<div class="module">
+    <div class="admin-menu-navigation">
+        <button class="btn btn-dark" @onclick="() => CurrentAdminMenu = AdminMenuEnum.SaleTable">Таблица продаж</button>
+        <button class="btn btn-dark" @onclick="() => CurrentAdminMenu = AdminMenuEnum.SaleChart">Диаграмма продаж</button>
+    </div>
+    <div class="container">
+        @switch (CurrentAdminMenu)
+        {
+            case AdminMenuEnum.SaleChart:
+                <SalesChart></SalesChart>
+                break;
+            case AdminMenuEnum.SaleTable:
+                <p>SaleTable</p>
+                break;
+        }
+    </div>
+</div>
+
 
 @code {
-
+    public AdminMenuEnum CurrentAdminMenu { get; set; }
 }
