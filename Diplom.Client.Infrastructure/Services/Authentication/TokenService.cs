@@ -17,7 +17,6 @@ namespace Diplom.Client.Infrastructure.Services.Authentication
         /// <summary>
         /// Удалить токен из локального хранилища.
         /// </summary>
-        /// <returns></returns>
         public async Task DeleteTokenAsync()
         {
             await _localStorageService.RemoveItemAsync("token");
@@ -34,7 +33,6 @@ namespace Diplom.Client.Infrastructure.Services.Authentication
         /// Установить токен в локальное хранилище.
         /// </summary>
         /// <param name="token">Токен.</param>
-        /// <returns><see cref="Task"></see></returns>
         public async Task SetTokenAsync(string token)
         {
             if (token != null)

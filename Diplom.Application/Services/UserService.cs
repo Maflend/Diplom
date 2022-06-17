@@ -11,9 +11,9 @@ namespace Diplom.Application.Services
         /// <summary>
         /// Создать хэш пароля.
         /// </summary>
-        /// <param name="password">Пароль</param>
-        /// <param name="passwordHash">Хэш</param>
-        /// <param name="passwordSalt">Соль</param>
+        /// <param name="password">Пароль.</param>
+        /// <param name="passwordHash">Хэш.</param>
+        /// <param name="passwordSalt">Соль.</param>
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())
@@ -26,9 +26,9 @@ namespace Diplom.Application.Services
         /// <summary>
         /// Проверить хэш пароля.
         /// </summary>
-        /// <param name="password">Пароль</param>
-        /// <param name="passwordHash">Хэш</param>
-        /// <param name="passwordSalt">Соль</param>
+        /// <param name="password">Пароль.</param>
+        /// <param name="passwordHash">Хэш.</param>
+        /// <param name="passwordSalt">Соль.</param>
         /// <returns><see cref="bool"/></returns>
         public bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {

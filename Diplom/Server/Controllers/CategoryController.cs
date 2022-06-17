@@ -24,7 +24,6 @@ namespace Diplom.Server.Controllers
         /// <summary>
         /// Получить все категории.
         /// </summary>
-        /// <returns>List<<see cref="CategoryResponseDto"/>></returns>
         [Authorize(Roles = nameof(RoleEnum.Client))]
         [HttpGet("getAll")]
         public async Task<ActionResult<List<CategoryResponseDto>>> GetAll()

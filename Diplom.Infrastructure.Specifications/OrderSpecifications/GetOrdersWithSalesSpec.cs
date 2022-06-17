@@ -8,7 +8,7 @@ namespace Diplom.Domain.Specifications.OrderSpecifications
     /// </summary>
     public class GetOrdersWithSalesSpec : Specification<Order>
     {
-        /// <inheritdoc cref="GetOrdersWithSalesSpec"/>=
+        /// <inheritdoc cref="GetOrdersWithSalesSpec"/>
         public GetOrdersWithSalesSpec()
         {
             Query.Include(o => o.Sales);
