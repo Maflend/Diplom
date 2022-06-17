@@ -10,6 +10,9 @@
     <div class="container">
         @switch (CurrentAdminMenu)
         {
+            case AdminMenuEnum.None:
+                <h3>Меню для администратора</h3>
+                break;
             case AdminMenuEnum.SaleChart:
                 <SalesChart></SalesChart>
                 break;
@@ -22,5 +25,5 @@
 
 
 @code {
-    public AdminMenuEnum CurrentAdminMenu { get; set; }
+    public AdminMenuEnum CurrentAdminMenu { get; set; } = AdminMenuEnum.None;
 }
