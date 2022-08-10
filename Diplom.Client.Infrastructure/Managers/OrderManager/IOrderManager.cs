@@ -1,5 +1,6 @@
 ﻿using Diplom.API.Dto.Dtos;
 using Diplom.API.Dto.Responses;
+using Microsoft.JSInterop;
 
 namespace Diplom.Client.Infrastructure.Managers.OrderManager
 {
@@ -18,5 +19,10 @@ namespace Diplom.Client.Infrastructure.Managers.OrderManager
         /// Запрос на получение заказов.
         /// </summary>
         Task<List<OrderWithSalesDto>> GetOrdersAsync();
+
+        /// <summary>
+        /// Скачать файл с заказом.
+        /// </summary>
+        Task<DotNetStreamReference> DownloadOrderAsync(Guid orderId);
     }
 }

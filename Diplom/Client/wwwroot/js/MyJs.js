@@ -1,0 +1,3 @@
+﻿function writeHello () {
+    alert("Привет")
+}

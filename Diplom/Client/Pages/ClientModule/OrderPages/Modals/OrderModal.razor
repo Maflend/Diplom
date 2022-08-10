@@ -1,20 +1,31 @@
 ﻿@inject IOrderManager OrderManager
+@inject IJSRuntime JS
 
 <div style="margin-bottom:10px;">
     <h4>Номер заказа: @Order?.Id</h4>
     <p style="margin-top:5px;">Дата создания: @Order?.CreateDate</p>
 </div>
+
+<p>
+    <button @onclick="ConvertArray">Convert Array</button>
+</p>
+
+<p>
+    @text
+</p>
+
 <div style="display:flex; justify-content:flex-end;">
+    <button @onclick="Consoom" class="btn btn-success">Скачать чек</button>
     <button @onclick="ModalInstance.CloseAsync" class="btn btn-secondary">Закрыть</button>
 </div>
-   
+
 
 @code {
-    [CascadingParameter] 
+    [CascadingParameter]
     BlazoredModalInstance ModalInstance { get; set; }
 
     [Parameter]
-    public List<CartDto> CartItems{ get; set; }
+    public List<CartDto> CartItems { get; set; }
 
     private OrderResponseDto Order { get; set; } = new();
 
@@ -26,5 +37,40 @@
     private void Close()
     {
         ModalInstance.CloseAsync();
+    }
+
+     private IJSObjectReference? jsModule;
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender)
+        {
+            jsModule = await JS.InvokeAsync<IJSObjectReference>("import", "./js/MyJs.js");
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+    private async Task Consoom() {
+        await jsModule.InvokeVoidAsync("writeHello");
+    }
+
+    private MarkupString text;
+
+    private uint[] quoteArray =
+        new uint[]
+        {
+            60, 101, 109, 62, 67, 97, 110, 39, 116, 32, 115, 116, 111, 112, 32,
+            116, 104, 101, 32, 115, 105, 103, 110, 97, 108, 44, 32, 77, 97,
+            108, 46, 60, 47, 101, 109, 62, 32, 45, 32, 77, 114, 46, 32, 85, 110,
+            105, 118, 101, 114, 115, 101, 10, 10,
+        };
+    private async Task ConvertArray()
+    {
+        await JS.InvokeVoidAsync("writeHello");
+        //text = new(await JS.InvokeAsync<string>("convertArray", quoteArray));
+    }
+    private async Task Download()
+    {
+        var streamRef = await OrderManager.DownloadOrderAsync(Order.Id);
+    
+        await JS.InvokeVoidAsync("logerror", "ЖОПАЖОПА");
+        // await JS.InvokeVoidAsync("downloadFileFromStream", "Name.txt", streamRef);
     }
 }

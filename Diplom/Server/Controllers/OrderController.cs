@@ -58,5 +58,26 @@ namespace Diplom.Server.Controllers
 
             return Ok(order);
         }
+
+        /// <summary>
+        /// Скачать файл с заказом.
+        /// </summary>
+        [HttpGet("download/{orderId}")]
+        [Authorize(Roles = nameof(RoleEnum.Client))]
+        public async Task<IActionResult> DownloadAsync(Guid orderId)
+        {
+            var content = await _mediator.Send(new DownloadOrderQuery(orderId));
+
+            var memoryStream = new MemoryStream();
+
+            await content.CopyToAsync(memoryStream);
+
+            memoryStream.Position = 0;
+
+            return File(memoryStream, "text/plain", "Name.txt");
+          //  var fileStream = new FileStreamResult(content, "text/plain");
+
+        //   return fileStream;
+        }
     }
 }

@@ -3,6 +3,7 @@ using Diplom.API.Dto.Dtos;
 using Diplom.API.Dto.Requests;
 using Diplom.API.Dto.Responses;
 using Diplom.Client.Infrastructure.Services.Http;
+using Microsoft.JSInterop;
 using System.Net.Http.Json;
 
 namespace Diplom.Client.Infrastructure.Managers.OrderManager
@@ -14,11 +15,13 @@ namespace Diplom.Client.Infrastructure.Managers.OrderManager
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IMapper _mapper;
+        private readonly IJSRuntime _JS;
 
-        public OrderManager(IHttpClientFactory httpClientFactory, IMapper mapper)
+        public OrderManager(IHttpClientFactory httpClientFactory, IMapper mapper, IJSRuntime JS)
         {
             _httpClientFactory = httpClientFactory;
             _mapper = mapper;
+            _JS = JS;
         }
 
         /// <summary>
@@ -33,6 +36,17 @@ namespace Diplom.Client.Infrastructure.Managers.OrderManager
             var response = await httpResponseMessageHelper.GetFromHttpResponseMessageAsync(httpResponse);
 
             return response;
+        }
+
+        /// <inheritdoc/>
+        public async Task<DotNetStreamReference> DownloadOrderAsync(Guid orderId)
+        {
+            var http = _httpClientFactory.CreateClient("ApiClient");
+            var httpResponse = await http.GetAsync(Routes.OrderEndpoints.DownloadOrder + "/" + orderId);
+
+            var fileStream = httpResponse.Content.ReadAsStream();
+
+            return new DotNetStreamReference(stream:fileStream);
         }
 
         /// <summary>

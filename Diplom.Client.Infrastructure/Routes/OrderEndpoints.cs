@@ -14,5 +14,11 @@
         /// Конечная точка получения заказов.
         /// </summary>
         public readonly static string GetOrders = "api/order";
+
+
+        /// <summary>
+        /// Конечная точка скачивания файла с заказом.
+        /// </summary>
+        public readonly static string DownloadOrder = "api/order/download";
     }
 }
