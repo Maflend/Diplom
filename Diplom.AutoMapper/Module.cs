@@ -1,13 +1,12 @@
 ﻿using Diplom.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Diplom.AutoMapper
+namespace Diplom.AutoMapper;
+
+public static class Module
 {
-    public static class Module
+    public static void ConfigureAutoMapper(this IServiceCollection services)
     {
-        public static void ConfigureAutoMapper(this IServiceCollection services)
-        {
-            services.AddAutoMapper(typeof(AutoMapperAssembly));
-        }
+        services.AddAutoMapper(typeof(AutoMapperAssembly));
     }
 }

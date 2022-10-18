@@ -8,7 +8,6 @@ using Diplom.Client.Infrastructure.Services.Http;
 using Diplom.Mapping;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using MudBlazor.Services;
 using Radzen;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

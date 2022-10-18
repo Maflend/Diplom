@@ -1,24 +1,23 @@
-﻿namespace Diplom.Client.Infrastructure.Services.Authentication
+﻿namespace Diplom.Client.Infrastructure.Services.Authentication;
+
+/// <summary>
+/// Интерфейс сервиса для взаимодействия с токеном.
+/// </summary>
+public interface ITokenService
 {
     /// <summary>
-    /// Интерфейс сервиса для взаимодействия с токеном.
+    /// Получить токен.
     /// </summary>
-    public interface ITokenService
-    {
-        /// <summary>
-        /// Получить токен.
-        /// </summary>
-        Task<string> GetTokenAsync();
+    Task<string> GetTokenAsync();
 
-        /// <summary>
-        /// Установить токен.
-        /// </summary>
-        /// <param name="token">Токен.</param>
-        Task SetTokenAsync(string token);
+    /// <summary>
+    /// Установить токен.
+    /// </summary>
+    /// <param name="token">Токен.</param>
+    Task SetTokenAsync(string token);
 
-        /// <summary>
-        /// Удалить токен.
-        /// </summary>
-        Task DeleteTokenAsync();
-    }
+    /// <summary>
+    /// Удалить токен.
+    /// </summary>
+    Task DeleteTokenAsync();
 }

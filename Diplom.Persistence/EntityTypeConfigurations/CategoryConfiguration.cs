@@ -2,18 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Diplom.Persistence.EntityTypeConfigurations
+namespace Diplom.Persistence.EntityTypeConfigurations;
+
+/// <summary>
+/// Конфигурация категории.
+/// </summary>
+internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
-    /// <summary>
-    /// Конфигурация категории.
-    /// </summary>
-    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
-        {
-            builder.HasKey(e => e.Id);
-            builder.HasIndex(e => e.Id).IsUnique();
-            builder.HasIndex(e => e.Name).IsUnique();
-        }
+        builder.HasKey(e => e.Id);
+        builder.HasIndex(e => e.Id).IsUnique();
+        builder.HasIndex(e => e.Name).IsUnique();
     }
 }

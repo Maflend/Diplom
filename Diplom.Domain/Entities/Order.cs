@@ -1,26 +1,25 @@
 ﻿using Diplom.Domain.Entities.Base;
 
-namespace Diplom.Domain.Entities
+namespace Diplom.Domain.Entities;
+
+/// <summary>
+/// Заказ.
+/// </summary>
+public class Order : BaseEntity
 {
     /// <summary>
-    /// Заказ.
+    /// Дата оформления.
     /// </summary>
-    public class Order : BaseEntity
-    {
-        /// <summary>
-        /// Дата оформления.
-        /// </summary>
-        public DateTime CreateDate { get; set; }
+    public DateTime CreateDate { get; set; }
 
-        /// <summary>
-        /// Перечень продаж.
-        /// </summary>
-        public List<Sale> Sales { get; set; }
+    /// <summary>
+    /// Перечень продаж.
+    /// </summary>
+    public List<Sale> Sales { get; set; }
 
-        /// <summary>
-        /// Пользователь.
-        /// </summary>
-        public User User { get; set; }
+    /// <summary>
+    /// Пользователь.
+    /// </summary>
+    public User User { get; set; }
 
-    }
 }

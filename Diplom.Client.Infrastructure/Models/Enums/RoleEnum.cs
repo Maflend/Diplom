@@ -1,22 +1,21 @@
 ﻿using System.ComponentModel;
 
-namespace Diplom.Client.Infrastructure.Models.Enums
+namespace Diplom.Client.Infrastructure.Models.Enums;
+
+/// <summary>
+/// Енам ролей пользователя.
+/// </summary>
+public enum RoleEnum
 {
     /// <summary>
-    /// Енам ролей пользователя.
+    /// Администратор.
     /// </summary>
-    public enum RoleEnum
-    {
-        /// <summary>
-        /// Администратор.
-        /// </summary>
-        [Description("Администратор")]
-        Administrator = 0,
+    [Description("Администратор")]
+    Administrator = 0,
 
-        /// <summary>
-        /// Клиент.
-        /// </summary>
-        [Description("Клиент")]
-        Client = 1
-    }
+    /// <summary>
+    /// Клиент.
+    /// </summary>
+    [Description("Клиент")]
+    Client = 1
 }

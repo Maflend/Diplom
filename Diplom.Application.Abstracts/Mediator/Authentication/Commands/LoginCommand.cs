@@ -1,21 +1,20 @@
 ﻿using Diplom.API.Dto.Responses;
 using MediatR;
 
-namespace Diplom.Application.Abstracts.Mediator.Authentication.Commands
+namespace Diplom.Application.Abstracts.Mediator.Authentication.Commands;
+
+/// <summary>
+/// Команда авторизации.
+/// </summary>
+public class LoginCommand : IRequest<LoginResponseDto>
 {
     /// <summary>
-    /// Команда авторизации.
+    /// Имя пользователя.
     /// </summary>
-    public class LoginCommand : IRequest<LoginResponseDto>
-    {
-        /// <summary>
-        /// Имя пользователя.
-        /// </summary>
-        public string UserName { get; set; }
+    public string UserName { get; set; }
 
-        /// <summary>
-        /// Пароль.
-        /// </summary>
-        public string Password { get; set; }
-    }
+    /// <summary>
+    /// Пароль.
+    /// </summary>
+    public string Password { get; set; }
 }

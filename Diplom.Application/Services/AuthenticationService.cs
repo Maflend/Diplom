@@ -5,48 +5,47 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace Diplom.Application.Services
+namespace Diplom.Application.Services;
+
+/// <summary>
+/// Сервис аутентификации.
+/// </summary>
+public class AuthenticationService : IAuthenticationService
 {
-    /// <summary>
-    /// Сервис аутентификации.
-    /// </summary>
-    public class AuthenticationService : IAuthenticationService
+    private readonly IConfiguration _configuration;
+
+    public AuthenticationService(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
+        _configuration = configuration;
+    }
 
-        public AuthenticationService(IConfiguration configuration)
+    /// <summary>
+    /// Утверждения пользователя.
+    /// </summary>
+    public ClaimsIdentity Claims { get; set; } = new();
+
+    /// <summary>
+    /// Создать токен.
+    /// </summary>
+    /// <param name="user"><see cref="User"/></param>
+    /// <returns><see cref="string"/></returns>
+    public string CreateToken(User user)
+    {
+        List<Claim> claims = new List<Claim>
         {
-            _configuration = configuration;
-        }
+            new Claim(ClaimTypes.Name, user.UserName),
+            new Claim(ClaimTypes.Role, user.Role.ToString())
+        };
+        Claims = new ClaimsIdentity(claims);
+        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: creds
+            );
+        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-        /// <summary>
-        /// Утверждения пользователя.
-        /// </summary>
-        public ClaimsIdentity Claims { get; set; } = new();
-
-        /// <summary>
-        /// Создать токен.
-        /// </summary>
-        /// <param name="user"><see cref="User"/></param>
-        /// <returns><see cref="string"/></returns>
-        public string CreateToken(User user)
-        {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
-            };
-            Claims = new ClaimsIdentity(claims);
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds
-                );
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
-        }
+        return jwt;
     }
 }

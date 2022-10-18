@@ -1,17 +1,16 @@
 ﻿using Diplom.Domain.Entities.Base;
 
-namespace Diplom.Domain.Entities
-{
-    public class Category : BaseEntity
-    {
-        /// <summary>
-        /// Наименование.
-        /// </summary>
-        public string Name { get; set; }
+namespace Diplom.Domain.Entities;
 
-        /// <summary>
-        /// Продукты.
-        /// </summary>
-        public List<Product> Products { get; set; }
-    }
+public class Category : BaseEntity
+{
+    /// <summary>
+    /// Наименование.
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Продукты.
+    /// </summary>
+    public List<Product> Products { get; set; }
 }

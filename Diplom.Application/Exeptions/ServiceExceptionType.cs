@@ -1,11 +1,10 @@
-﻿namespace Diplom.Application.Exeptions
+﻿namespace Diplom.Application.Exeptions;
+
+/// <summary>
+/// Перечисление типов ошибок.
+/// </summary>
+public enum ServiceExceptionType
 {
-    /// <summary>
-    /// Перечисление типов ошибок.
-    /// </summary>
-    public enum ServiceExceptionType
-    {
-        NotFound = 404,
-        BadRequest = 400
-    }
+    NotFound = 404,
+    BadRequest = 400
 }

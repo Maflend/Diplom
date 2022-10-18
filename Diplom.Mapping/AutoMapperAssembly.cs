@@ -1,9 +1,8 @@
-﻿namespace Diplom.Mapping
+﻿namespace Diplom.Mapping;
+
+/// <summary>
+/// Класс для нахождения сборки.
+/// </summary>
+public class AutoMapperAssembly
 {
-    /// <summary>
-    /// Класс для нахождения сборки.
-    /// </summary>
-    public class AutoMapperAssembly
-    {
-    }
 }

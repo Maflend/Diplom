@@ -3,46 +3,45 @@ using Diplom.Application.Exeptions;
 using System.Net;
 using System.Text.Json;
 
-namespace Diplom.Server
+namespace Diplom.Server;
+
+/// <summary>
+/// Middleware для отлова <see cref="ServiceException"/>.
+/// </summary>
+public class ErrorHandlerMiddleware
 {
-    /// <summary>
-    /// Middleware для отлова <see cref="ServiceException"/>.
-    /// </summary>
-    public class ErrorHandlerMiddleware
+    private readonly RequestDelegate _next;
+
+    public ErrorHandlerMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+    public async Task Invoke(HttpContext context)
+    {
+        try
         {
-            _next = next;
+            await _next(context);
         }
-
-        public async Task Invoke(HttpContext context)
+        catch (ServiceException error)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (ServiceException error)
-            {
-                var response = context.Response;
-                response.ContentType = "application/json";
+            var response = context.Response;
+            response.ContentType = "application/json";
 
-                switch (error.ServiceExceptionType)
-                {
-                    case ServiceExceptionType.NotFound:
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-                    case ServiceExceptionType.BadRequest:
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
-                    default:
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-                var result = JsonSerializer.Serialize(new ServerResponseError() { Message = error.Message });
-                await response.WriteAsync(result);
+            switch (error.ServiceExceptionType)
+            {
+                case ServiceExceptionType.NotFound:
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    break;
+                case ServiceExceptionType.BadRequest:
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+                default:
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    break;
             }
+            var result = JsonSerializer.Serialize(new ServerResponseError() { Message = error.Message });
+            await response.WriteAsync(result);
         }
     }
 }

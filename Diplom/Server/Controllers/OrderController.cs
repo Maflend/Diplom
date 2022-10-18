@@ -75,9 +75,9 @@ namespace Diplom.Server.Controllers
             memoryStream.Position = 0;
 
             return File(memoryStream, "text/plain", "Name.txt");
-          //  var fileStream = new FileStreamResult(content, "text/plain");
+            //  var fileStream = new FileStreamResult(content, "text/plain");
 
-        //   return fileStream;
+            //   return fileStream;
         }
     }
 }

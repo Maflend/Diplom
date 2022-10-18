@@ -1,20 +1,19 @@
 ﻿using Ardalis.Specification;
 using Diplom.Domain.Entities;
 
-namespace Diplom.Domain.Specifications.ProductSpecifications
+namespace Diplom.Domain.Specifications.ProductSpecifications;
+
+/// <summary>
+/// Спецификация продуктов.
+/// </summary>
+public class GetProductsSpec : Specification<Product>
 {
     /// <summary>
-    /// Спецификация продуктов.
+    /// Получить продукты по идентификатору категории.
     /// </summary>
-    public class GetProductsSpec : Specification<Product>
+    /// <param name="categoryId">Идентификатор категории.</param>
+    public GetProductsSpec(Guid categoryId)
     {
-        /// <summary>
-        /// Получить продукты по идентификатору категории.
-        /// </summary>
-        /// <param name="categoryId">Идентификатор категории.</param>
-        public GetProductsSpec(Guid categoryId)
-        {
-            Query.Where(p => p.CategoryId == categoryId);
-        }
+        Query.Where(p => p.CategoryId == categoryId);
     }
 }

@@ -2,27 +2,26 @@
 using Diplom.API.Dto.Responses;
 using Microsoft.JSInterop;
 
-namespace Diplom.Client.Infrastructure.Managers.OrderManager
+namespace Diplom.Client.Infrastructure.Managers.OrderManager;
+
+/// <summary>
+/// Менеджера заказов.
+/// </summary>
+public interface IOrderManager
 {
     /// <summary>
-    /// Менеджера заказов.
+    /// Запрос на создание заказа.
     /// </summary>
-    public interface IOrderManager
-    {
-        /// <summary>
-        /// Запрос на создание заказа.
-        /// </summary>
-        /// <param name="Cart">Корзина товаров.</param>
-        Task<OrderResponseDto> CreateOrderAsync(List<CartDto> Cart);
+    /// <param name="Cart">Корзина товаров.</param>
+    Task<OrderResponseDto> CreateOrderAsync(List<CartDto> Cart);
 
-        /// <summary>
-        /// Запрос на получение заказов.
-        /// </summary>
-        Task<List<OrderWithSalesDto>> GetOrdersAsync();
+    /// <summary>
+    /// Запрос на получение заказов.
+    /// </summary>
+    Task<List<OrderWithSalesDto>> GetOrdersAsync();
 
-        /// <summary>
-        /// Скачать файл с заказом.
-        /// </summary>
-        Task<DotNetStreamReference> DownloadOrderAsync(Guid orderId);
-    }
+    /// <summary>
+    /// Скачать файл с заказом.
+    /// </summary>
+    Task<DotNetStreamReference> DownloadOrderAsync(Guid orderId);
 }

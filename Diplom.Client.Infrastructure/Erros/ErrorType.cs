@@ -1,18 +1,17 @@
-﻿namespace Diplom.Client.Infrastructure.Erros
+﻿namespace Diplom.Client.Infrastructure.Erros;
+
+/// <summary>
+/// Перечесление типов ошибок для Toast.
+/// </summary>
+public enum ErrorType
 {
     /// <summary>
-    /// Перечесление типов ошибок для Toast.
+    /// Ошибка авторизации.
     /// </summary>
-    public enum ErrorType
-    {
-        /// <summary>
-        /// Ошибка авторизации.
-        /// </summary>
-        AuthenticationError,
+    AuthenticationError,
 
-        /// <summary>
-        /// Ошибка регистрации.
-        /// </summary>
-        RegistrationError
-    }
+    /// <summary>
+    /// Ошибка регистрации.
+    /// </summary>
+    RegistrationError
 }

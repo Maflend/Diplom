@@ -1,24 +1,23 @@
-﻿namespace Diplom.Client.Infrastructure.Routes
+﻿namespace Diplom.Client.Infrastructure.Routes;
+
+/// <summary>
+/// Конечные точки для контроллера заказов.
+/// </summary>
+public class OrderEndpoints
 {
     /// <summary>
-    /// Конечные точки для контроллера заказов.
+    /// Конечная точка создания заказа.
     /// </summary>
-    public class OrderEndpoints
-    {
-        /// <summary>
-        /// Конечная точка создания заказа.
-        /// </summary>
-        public readonly static string CreateOrder = "api/order/create";
+    public readonly static string CreateOrder = "api/order/create";
 
-        /// <summary>
-        /// Конечная точка получения заказов.
-        /// </summary>
-        public readonly static string GetOrders = "api/order";
+    /// <summary>
+    /// Конечная точка получения заказов.
+    /// </summary>
+    public readonly static string GetOrders = "api/order";
 
 
-        /// <summary>
-        /// Конечная точка скачивания файла с заказом.
-        /// </summary>
-        public readonly static string DownloadOrder = "api/order/download";
-    }
+    /// <summary>
+    /// Конечная точка скачивания файла с заказом.
+    /// </summary>
+    public readonly static string DownloadOrder = "api/order/download";
 }

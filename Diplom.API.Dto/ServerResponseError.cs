@@ -1,13 +1,12 @@
-﻿namespace Diplom.API.Dto
+﻿namespace Diplom.API.Dto;
+
+/// <summary>
+/// Класс ответа с информации об ошибки.
+/// </summary>
+public class ServerResponseError
 {
     /// <summary>
-    /// Класс ответа с информации об ошибки.
+    /// Текст ошибки.
     /// </summary>
-    public class ServerResponseError
-    {
-        /// <summary>
-        /// Текст ошибки.
-        /// </summary>
-        public string Message { get; set; }
-    }
+    public string Message { get; set; }
 }

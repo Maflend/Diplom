@@ -1,20 +1,19 @@
 ﻿using Diplom.API.Dto.Responses;
 
-namespace Diplom.API.Dto.Dtos
+namespace Diplom.API.Dto.Dtos;
+
+/// <summary>
+/// Дто корзины.
+/// </summary>
+public class CartDto
 {
     /// <summary>
-    /// Дто корзины.
+    /// Продукт.
     /// </summary>
-    public class CartDto
-    {
-        /// <summary>
-        /// Продукт.
-        /// </summary>
-        public ProductResponseDto Product { get; set; }
+    public ProductResponseDto Product { get; set; }
 
-        /// <summary>
-        /// Количество к приобретению.
-        /// </summary>
-        public int Quantity { get; set; }
-    }
+    /// <summary>
+    /// Количество к приобретению.
+    /// </summary>
+    public int Quantity { get; set; }
 }

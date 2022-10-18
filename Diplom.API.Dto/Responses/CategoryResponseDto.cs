@@ -1,18 +1,17 @@
-﻿namespace Diplom.API.Dto.Responses
+﻿namespace Diplom.API.Dto.Responses;
+
+/// <summary>
+/// Dto категории для ответа сервера.
+/// </summary>
+public class CategoryResponseDto
 {
     /// <summary>
-    /// Dto категории для ответа сервера.
+    /// Уникальный идентификатор.
     /// </summary>
-    public class CategoryResponseDto
-    {
-        /// <summary>
-        /// Уникальный идентификатор.
-        /// </summary>
-        public Guid Id { get; set; }
+    public Guid Id { get; set; }
 
-        /// <summary>
-        /// Наименование.
-        /// </summary>
-        public string Name { get; set; }
-    }
+    /// <summary>
+    /// Наименование.
+    /// </summary>
+    public string Name { get; set; }
 }

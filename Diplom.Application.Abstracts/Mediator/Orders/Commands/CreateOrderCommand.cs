@@ -2,21 +2,20 @@
 using Diplom.API.Dto.Responses;
 using MediatR;
 
-namespace Diplom.Application.Abstracts.Mediator.Orders.Commands
+namespace Diplom.Application.Abstracts.Mediator.Orders.Commands;
+
+/// <summary>
+/// Команда создания заказа.
+/// </summary>
+public class CreateOrderCommand : IRequest<OrderResponseDto>
 {
     /// <summary>
-    /// Команда создания заказа.
+    /// Лист продаж.
     /// </summary>
-    public class CreateOrderCommand : IRequest<OrderResponseDto>
-    {
-        /// <summary>
-        /// Лист продаж.
-        /// </summary>
-        public List<CreateSaleDto> Sales { get; set; }
+    public List<CreateSaleDto> Sales { get; set; }
 
-        /// <summary>
-        /// Имя пользователя.
-        /// </summary>
-        public string UserName { get; set; }
-    }
+    /// <summary>
+    /// Имя пользователя.
+    /// </summary>
+    public string UserName { get; set; }
 }

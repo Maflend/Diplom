@@ -1,13 +1,12 @@
-﻿namespace Diplom.API.Dto.Responses
+﻿namespace Diplom.API.Dto.Responses;
+
+/// <summary>
+/// Dto регистрации для ответа сервера.
+/// </summary>
+public class RegisterResponseDto
 {
     /// <summary>
-    /// Dto регистрации для ответа сервера.
+    /// Имя пользователя.
     /// </summary>
-    public class RegisterResponseDto
-    {
-        /// <summary>
-        /// Имя пользователя.
-        /// </summary>
-        public string UserName { get; set; }
-    }
+    public string UserName { get; set; }
 }
